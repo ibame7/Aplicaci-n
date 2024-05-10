@@ -20,8 +20,9 @@ $consulta->execute(['username' => $username,'password' => $password]);
 // Verificar si se encontró un usuario con las credenciales proporcionadas
 if ($usuario= $consulta->fetchAll(PDO::FETCH_ASSOC)) {
     // Devolver los datos del usuario en formato JSON
-    echo json_encode($usuario);
+    session_start();
+    echo json_encode(['usuario'=>$usuario]);
 } else {
     // Devolver un mensaje de error si no se encontró ningún usuario
-    echo json_encode(['error' => 'Usuario o contraseña incorrectos','usuario'=>$username,'contrasenia'=>$password]);
+    echo json_encode(['error' => 'Usuario o contraseña incorrectos']);
 }

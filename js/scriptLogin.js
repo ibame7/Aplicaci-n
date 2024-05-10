@@ -1,7 +1,7 @@
-let boton = document.getElementById("boton");
+let botonLogin = document.getElementById("boton");
 let usuario;
 
-async function login(){
+async function login() {
   let user = document.getElementById("login-name");
   let pass = document.getElementById("login-pass");
   let error = document.getElementsByClassName("error")[0];
@@ -16,26 +16,35 @@ async function login(){
     error.innerHTML = "";
 
     let datos = {
-      "username": user.value,
-      "password": pass.value,
+      username: user.value,
+      password: pass.value,
     };
 
-    let options={
+    let options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(datos),
-    }
+    };
     // Realizar la solicitud Fetch
-    let url=new URL(`http://localhost:3000/xampp/htdocs/Aplicacion/login.php`)
-     await fetch(url,options)    
+    let url = new URL(
+      `http://localhost:3000/xampp/htdocs/Aplicacion/login.php`
+    );
+    await fetch(url, options)
       .then(function (response) {
         return response.json();
       })
       .then((data) => {
-        usuario = data;
-        console.log(data);
+        if (data.hasOwnProperty("usuario")) {
+          usuario = data;
+          // console.log(usuario);
+
+        } else if (data.hasOwnProperty("error")) {
+          user.style.border = "2px solid red";
+          pass.style.border = "2px solid red";
+          error.innerHTML = data.error;
+        }
       })
       .catch((error) => {
         console.error("Error en la solicitud:", error);
@@ -43,7 +52,7 @@ async function login(){
   }
 }
 
-boton.addEventListener("click", async (event) => {
+botonLogin.addEventListener("click", async (event) => {
   event.preventDefault();
   login();
 });
