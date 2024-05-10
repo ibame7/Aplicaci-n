@@ -1,8 +1,7 @@
 let boton = document.getElementById("boton");
 let usuario;
 
-boton.addEventListener("click", async (event) => {
-  event.preventDefault();
+async function login(){
   let user = document.getElementById("login-name");
   let pass = document.getElementById("login-pass");
   let error = document.getElementsByClassName("error")[0];
@@ -41,4 +40,9 @@ boton.addEventListener("click", async (event) => {
         console.error("Error en la solicitud:", error);
       });
   }
+}
+
+boton.addEventListener("click", async (event) => {
+  event.preventDefault();
+  login();
 });
