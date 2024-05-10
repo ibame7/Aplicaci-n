@@ -28,7 +28,8 @@ async function login(){
       body: JSON.stringify(datos),
     }
     // Realizar la solicitud Fetch
-     await fetch("login.php",options)    
+    let url=new URL(`http://localhost:3000/xampp/htdocs/Aplicacion/login.php`)
+     await fetch(url,options)    
       .then(function (response) {
         return response.json();
       })

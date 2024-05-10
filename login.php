@@ -5,8 +5,9 @@ header("Cache-Control: no-cache, must-revalidate"); // Esta línea ayuda a que l
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
 
 // Obtener los datos del POST
-$username = $_POST["username"];
-$password = $_POST["password"];
+$_POST=json_decode(file_get_contents('php://input'),true);
+$username = $_POST['username'];
+$password = $_POST['password'];
 
 // Conexión a la base de datos
 $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
