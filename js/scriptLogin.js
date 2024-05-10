@@ -1,4 +1,5 @@
 let botonLogin = document.getElementById("boton");
+let url = new URL(`http://localhost:3000/xampp/htdocs/Aplicacion/login.php`);
 let usuario;
 
 async function login() {
@@ -28,9 +29,7 @@ async function login() {
       body: JSON.stringify(datos),
     };
     // Realizar la solicitud Fetch
-    let url = new URL(
-      `http://localhost:3000/xampp/htdocs/Aplicacion/login.php`
-    );
+   
     await fetch(url, options)
       .then(function (response) {
         return response.json();
@@ -39,7 +38,6 @@ async function login() {
         if (data.hasOwnProperty("usuario")) {
           usuario = data;
           // console.log(usuario);
-
         } else if (data.hasOwnProperty("error")) {
           user.style.border = "2px solid red";
           pass.style.border = "2px solid red";
@@ -56,3 +54,5 @@ botonLogin.addEventListener("click", async (event) => {
   event.preventDefault();
   login();
 });
+
+
