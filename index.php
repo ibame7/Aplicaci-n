@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +31,11 @@
                         <a class="nav-link" href="">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="signup.html">Sign Up</a>
+                        <?php if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
+                            echo '<a class="nav-link" href="perfil.php">',$_SESSION['usuario']['username'],'</a>';
+                        } else {
+                            echo '<a class="nav-link" href="signup.php">Sign Up</a>';
+                        } ?>
                     </li>
                 </ul>
             </div>

@@ -37,6 +37,7 @@ async function login() {
       .then((data) => {
         if (data.hasOwnProperty("usuario")) {
           usuario = data;
+          window.location.href="index.php";
           // console.log(usuario);
         } else if (data.hasOwnProperty("error")) {
           user.style.border = "2px solid red";
@@ -53,6 +54,7 @@ async function login() {
 botonLogin.addEventListener("click", async (event) => {
   event.preventDefault();
   login();
+
 });
 
 
