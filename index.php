@@ -32,7 +32,14 @@ session_start();
                     </li>
                     <li class="nav-item">
                         <?php if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
-                            echo '<a class="nav-link" href="perfil.php">',$_SESSION['usuario']['username'],'</a>';
+                            if ($_SESSION['tipo'] == "consumidor") {
+                                echo '<a class="nav-link" href="consumidor.php">', $_SESSION['usuario']['username'], '</a>';
+                            } else if ($_SESSION['tipo'] == "propietario") {
+                                echo '<a class="nav-link" href="propietario.php">', $_SESSION['usuario']['username'], '</a>';
+                            } else if ($_SESSION['tipo'] == "admin") {
+                                echo '<a class="nav-link" href="administrador.php">', $_SESSION['usuario']['username'], '</a>';
+
+                            }
                         } else {
                             echo '<a class="nav-link" href="signup.php">Sign Up</a>';
                         } ?>
