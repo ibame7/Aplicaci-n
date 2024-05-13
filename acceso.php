@@ -12,8 +12,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="imagenes/icono.ico" />
-    <link rel="stylesheet" href="estilos/styleSignUp.css">
-    <title>Sign Up</title>
+    <link rel="stylesheet" href="estilos/styleAcceso.css">
+    <title>Acceso</title>
 </head>
 
 <body>
@@ -38,6 +38,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
                 </form>
                 <a class="error"></a>
                 <a class="login-link" href="#">¿Has olvidado tu contraseña?</a>
+                <a class="login-link" id="volver" href="registro.php">Registrarse</a>
+                <br>
                 <a class="login-link" id="volver" href="index.php">Volver</a>
             </div>
         </div>
