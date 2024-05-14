@@ -5,18 +5,25 @@ header('Content-Type: application/json');
 header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 session_start();
+if(isset($_SESSION['usuario'])){
+    header("Location:index.php");
+    exit;
+}else{
+
 $_POST = json_decode(file_get_contents('php://input'), true);
 if (isset($_POST['username']) && isset($_POST['password'])) {
     if (strlen($_POST['password']) < 4 || strlen($_POST['password']) > 10) {
         echo json_encode(['error' => 'La contraseña debe tener entre 4 y 10 caracteres']);
     } else {
-
-
         $username = $_POST['username'];
         $password = hash('sha256', $_POST['password']);
 
-        $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
-
+        try {
+            $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
+        } catch (Exception $e) {
+            die("Ha ocurrido un error. Avisa al soporte técnico");
+        }
+        
         $consulta = $bd->prepare("SELECT * FROM user WHERE username = :username AND contrasenia = :password");
         $consulta->execute(['username' => $username, 'password' => $password]);
 
@@ -54,6 +61,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         }
     }
 } else {
-    echo json_encode(['error2' => 'No se recibieron los datos del usuario']);
+    header("Location:index.php");
+    exit;
 }
-
+}

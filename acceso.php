@@ -37,7 +37,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
                     <input type="submit" id="boton" value="Acceder">
                 </form>
                 <a class="error"></a>
-                <a class="login-link" href="#">¿Has olvidado tu contraseña?</a>
+                <a class="login-link" href="recuperarContrasenia.php">¿Has olvidado tu contraseña?</a>
                 <a class="login-link" id="volver" href="registro.php">Registrarse</a>
                 <br>
                 <a class="login-link" id="volver" href="index.php">Volver</a>
