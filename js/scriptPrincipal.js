@@ -34,3 +34,7 @@
         });
     });
 
+    let faq=document.getElementById("faq")
+    faq.addEventListener("click",()=>{
+            window.location.href="faq.php";
+    });

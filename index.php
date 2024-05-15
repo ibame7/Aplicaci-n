@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
+    <!-- index -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -137,7 +138,7 @@ session_start();
             <div class="row gx-4 gx-lg-5">
                 <div class="col-md-4 mb-3 mb-md-0">
                     <div class="card py-4 h-100">
-                        <div class="card-body text-center"
+                        <div class="card-body text-center"  id="faq"
                             style="display: flex; flex-direction: column; justify-content: center;">
                             <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Preguntas Frecuentes</h4>
