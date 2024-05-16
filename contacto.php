@@ -41,16 +41,16 @@ echo '<html lang="es">
                     <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio"
                         placeholder="Deja aquí tu comentario..."></textarea>
                 </p>
-
+                <p class="aviso">
+                <span class="obligatorio"> * </span>los campos son obligatorios.
+            </p>
+            <div class="error"></div>
                 <button type="submit" name="enviar_formulario" id="enviar">
                     <p>Enviar</p>
                 </button>
-                <div class="error"></div>
-                <p class="aviso">
-                    <span class="obligatorio"> * </span>los campos son obligatorios.
-                </p>
-
             </form>
+            <button id="volver" onclick="volverIndex()";"><p>Volver</p></button>
+
         </div>
     </div>
 </body>

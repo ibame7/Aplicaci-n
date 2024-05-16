@@ -4,6 +4,9 @@ let botonRegistro = document.getElementById("botonRegistro");
 let botonRecuperar = document.getElementById("botonRecuperar");
 let botonContacto = document.getElementById("enviar");
 
+function volverIndex(){
+  window.location.href="index.php";
+}
 function validarEmail(email) {
   const regex = /^[^\s@]+@gmail\.com$|^[^\s@]+@[^\s@]+\.[^\s@]+\.es$/;
   return regex.test(email);

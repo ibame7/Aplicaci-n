@@ -29,7 +29,7 @@ session_start();
                         <a class="nav-link" href="">Municipios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Contacto</a>
+                        <a class="nav-link" href="contacto.php">Contacto</a>
                     </li>
                     <li class="nav-item">
                         <?php if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {

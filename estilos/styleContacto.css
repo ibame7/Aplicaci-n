@@ -21,7 +21,12 @@ body{
 .error{
 	color: red;
 }
-
+#volver{
+	background-color: #3498DB;
+}
+#volver:hover{
+	background-color:#3767c1;
+}
 input{
 	background-color: #fbfbfb; 
 	width: 408px; 
