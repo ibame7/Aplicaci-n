@@ -17,5 +17,5 @@ document.addEventListener('DOMContentLoaded', function() {
 let volver = document.querySelector('.atras img');
 
 volver.addEventListener("click",()=>{
-    window.location.href="index.php";
+    history.back();
 })
