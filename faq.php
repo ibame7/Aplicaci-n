@@ -1,6 +1,6 @@
 <?php
 
-echo'
+echo '
 <!DOCTYPE html>
 <html lang="es">
 <!-- faq -->
@@ -18,9 +18,9 @@ echo'
         <div class="row">
             <div class="container-faq">
                 <div class="title-faq">
+                    <div class="atras"><img src="imagenes/flecha.png"></div>
                     <h3>Preguntas Frecuentes</h3>
                 </div>
-
                 <div class="item-faq">                    
                     <div class="question">
                         <h3>¿Cómo puedo reservar una pista deportiva a través de la app?<span>Q</span></h3>

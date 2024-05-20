@@ -38,3 +38,4 @@
     faq.addEventListener("click",()=>{
             window.location.href="faq.php";
     });
+    
