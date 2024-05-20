@@ -39,3 +39,4 @@
             window.location.href="faq.php";
     });
     
+    

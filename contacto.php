@@ -4,6 +4,7 @@ echo '<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Formulario de contacto</title>
+    <link rel="icon" type="image/x-icon" href="imagenes/icono.ico" />
     <link rel="stylesheet" type="text/css" href="estilos/styleContacto.css">
 </head>
 

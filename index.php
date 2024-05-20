@@ -26,7 +26,7 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="">Municipios</a>
+                        <a class="nav-link" href="municipios.php">Municipios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.php">Contacto</a>

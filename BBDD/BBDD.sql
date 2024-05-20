@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2024 a las 09:59:36
+-- Tiempo de generación: 20-05-2024 a las 11:02:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -164,15 +164,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `nombre`, `apellido1`, `apellido2`, `correo`, `contrasenia`) VALUES
-('admin1', 'antonio david', 'ibañez', 'medina', 'antonio@gmail.com', 'admin'),
-('admin2', 'ismael', 'ontanilla', 'gonzalez', 'ismael@gmail.com', 'admin'),
-('arahal123', 'maria', 'hidalgo', 'castro', 'maria@gmail.com', 'arahal'),
-('ibame', 'antonio', 'perez', 'nuñez', 'ibame@gmail.com', 'ibame.'),
-('joseant', 'jose antonio', 'rosales', 'giron', 'jose@gmail.com', 'joseant.'),
-('locas99', 'luis', 'lopez', 'castillo', 'luis@gmail.com', 'locas99.'),
-('marchena123', 'juan', 'lopez', 'martinez', 'juan@gmail.com', 'marchena'),
-('moron123', 'alberto', 'rodriguez', 'españa', 'alberto@gmail.com', 'moron'),
-('paradas123', 'ernesto', 'arispon', 'gutierrez', 'ernesto@gmail.com', 'paradas');
+('admin1', 'antonio david', 'ibañez', 'medina', 'antonio@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
+('admin2', 'ismael', 'ontanilla', 'gonzalez', 'ismael@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
+('arahal123', 'maria', 'hidalgo', 'castro', 'maria@gmail.com', '050ae231c1026f05b3f9c0c4a8b0b57815d24c6d692957bd4a04410ab709b6a6'),
+('ibame', 'antonio', 'perez', 'nuñez', 'ibame@gmail.com', 'dedaed504e5a3ac42e3b822ea71d446bcddcde09eca7e4c2ee798c90dc731c79'),
+('joseant', 'jose antonio', 'rosales', 'giron', 'jose@gmail.com', '4fd12708b364bbf86cfbd003813bbc07d9bd2becef67cdf79d7a72fad89cd5f8'),
+('locas99', 'luis', 'lopez', 'castillo', 'luis@gmail.com', '14a1667f2c7080d808354a9a0aeb90b01af4bbc1cc99aa159740e752fcb6dee3'),
+('marchena123', 'juan', 'lopez', 'martinez', 'juan@gmail.com', 'e6973f2059ab617e6e2ea0dba1184e062d9ba56b74d2b7ba2d0e4a3463a00f09'),
+('moron123', 'alberto', 'rodriguez', 'españa', 'alberto@gmail.com', '110c6c5a86fa0de59f9170494cb9841e767243e1f611bb6c513b86e4641284c8'),
+('paradas123', 'ernesto', 'arispon', 'gutierrez', 'ernesto@gmail.com', '3824d2853cc5f643dcb4d5149c7de1ee37d168642ddd53b87365aee36da2348f');
 
 --
 -- Índices para tablas volcadas
