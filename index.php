@@ -57,7 +57,7 @@ session_start();
                     <br>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Reserva y Juega es una app para reservar instalaciones
                         deportivas</h2>
-                    <a class="btn btn-primary" href="">Buscar instalación</a>
+                    <a class="btn btn-primary" id="buscarInstalacion">Buscar instalación</a>
                 </div>
             </div>
         </div>
