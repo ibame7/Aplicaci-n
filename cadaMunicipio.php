@@ -16,14 +16,10 @@ session_start();
         }
 
         #resultados {
-            width: 100vw;
-            height: 81vh;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            padding: 10px;
+            width: 99vw;
+            height: 100vh;                        
             align-content: center;
-            justify-items: center background-attachment: scroll;
+            justify-items: center;
             animation: changeBackground 35s infinite;
         }
 
@@ -49,17 +45,18 @@ session_start();
             }
         }
 
-        .divMunicipio {
-            background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
-            color: white;
-            text-align: center;
+        .divError{
+            width: 50vw;
+            height: 50vh; 
+            position: relative;
+            left: 24%;
+            background-color: white;
             align-content: center;
-            border-radius: 5px;
-            height: 20vh;
-            width: 80%;
-        }
-        .divMunicipio:hover{
-            cursor: pointer;
+            text-align: center;        
+            color: black;
+            font-weight: bold;
+            font-size: 1.8em;
+            border-radius: 5px;            
         }
         
         body {

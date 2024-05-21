@@ -79,7 +79,9 @@ buscar.addEventListener("click", () => {
   button.addEventListener("click", () => {
     if (input.value.trim().length > 0) {
       input.style.border = "";
-      localStorage.setItem("municipio", input.value.split(' ').join(''));
+      let municipio=input.value.split(' ').join('');
+      municipio=municipio=municipio.charAt(0).toUpperCase() + municipio.slice(1);
+      localStorage.setItem("municipio", municipio);
       window.location.href = "cadaMunicipio.php";
     } else {
       input.style.border = "2px red solid";
