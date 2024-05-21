@@ -40,31 +40,46 @@ faq.addEventListener("click", () => {
 let buscar = document.getElementById("buscarInstalacion");
 /////////////////////////////////////////////////MODIFICAR BOTON/////////////////////////////////////////////////////
 buscar.addEventListener("click", () => {
-    var popupDiv = document.createElement('div');
-    popupDiv.className = 'popup-container';
+  let poPup = document.querySelector(".popup-container");
 
-    // Crear el input de texto
-    var input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = 'Escribe algo...';
-    
-    // Crear el botón
-    var button = document.createElement('button');
-    button.textContent = 'Enviar';
-    
-    // Crear el botón de cerrar
-    var closeBtn = document.createElement('span');
-    closeBtn.className = 'close-btn';
-    closeBtn.innerHTML = '&times;';
-    closeBtn.onclick = function() {
-        document.body.removeChild(popupDiv);
-    };
+  let popupDiv = document.createElement("div");
+  popupDiv.className = "popup-container";
 
-    // Agregar elementos al div del pop-up
-    popupDiv.appendChild(input);
-    popupDiv.appendChild(button);
-    popupDiv.appendChild(closeBtn);
+  // Crear el input de texto
+  let input = document.createElement("input");
+  input.setAttribute("id", "valorMunicipio");
+  input.type = "text";
+  input.placeholder = "Escribe una ciudad";
 
-    // Agregar el pop-up al body
+  // Crear el botón
+  let button = document.createElement("button");
+  button.setAttribute("id", "buscarMunicipio");
+  button.textContent = "Buscar";
+
+  // Crear el botón de cerrar
+  let closeBtn = document.createElement("span");
+  closeBtn.className = "close-btn";
+  closeBtn.innerHTML = "&times";
+  closeBtn.onclick = function () {
+    document.body.removeChild(popupDiv);
+  };
+
+  // Agregar elementos al div del pop-up
+  popupDiv.appendChild(input);
+  popupDiv.appendChild(button);
+  popupDiv.appendChild(closeBtn);
+
+  if (!poPup) {
     document.body.appendChild(popupDiv);
+  }
+
+  button.addEventListener("click", () => {
+    if (input.value.trim().length > 0) {
+      input.style.border = "";
+      localStorage.setItem("municipio", input.value.trim());
+      window.location.href = "cadaMunicipio.php";
+    } else {
+      input.style.border = "2px red solid";
+    }
+  });
 });

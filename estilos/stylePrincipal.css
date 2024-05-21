@@ -11309,6 +11309,7 @@ body {
 #mainNav {
   min-height: 3.5rem;
   background-color: #fff;
+  z-index: 9999;
 }
 #mainNav .navbar-toggler {
   font-size: 80%;
@@ -11413,26 +11414,82 @@ body {
 }
 /* ------------------------------------------------------------------------ */
 .popup-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(rgba(4, 1, 66, 1), rgba(132, 128, 204, 1));
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-.popup-content {
-    display: flex;
-    align-items: center;
+.popup-container input {
+  width: calc(100% - 50px); /* Adjust width considering padding */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.popup-container button {
+  width: calc(100% - 50px);
+  padding: 10px;
+  background-color: #0d6efd;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.popup-container button:hover {
+  background-color: #0b5ed7;
 }
 
 .close-btn {
-    margin-left: auto;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  text-align: center;
+  line-height: 20px;
 }
+
+@media (max-width: 600px) {
+  .popup-container {
+      width: 90%;
+      padding: 15px;
+  }
+  
+  .popup-container input {
+      width: calc(100% - 30px); /* Adjust width considering padding */
+  }
+
+  .popup-container button {
+      padding: 8px;
+  }
+
+  .close-btn {
+      top: 5px;
+      right: 5px;
+  }
+}
+
+
 /* ------------------------------------------------------------------------ */
 
 
