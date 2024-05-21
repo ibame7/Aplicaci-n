@@ -10,7 +10,7 @@ async function cargarMunicipios(str) {
       str = "municipios";
     }
   }
-  await fetch("servidorMunicipios.php?municipio=" + str)
+  await fetch("servidor/servidorMunicipios.php?municipio=" + str)
     .then(function (response) {
       return response.json(); // Este response.json() que devolvemos...
     })

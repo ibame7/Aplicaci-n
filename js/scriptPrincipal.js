@@ -39,6 +39,9 @@ faq.addEventListener("click", () => {
 
 let buscar = document.getElementById("buscarInstalacion");
 /////////////////////////////////////////////////MODIFICAR BOTON/////////////////////////////////////////////////////
+if(buscar){
+
+
 buscar.addEventListener("click", () => {
   let poPup = document.querySelector(".popup-container");
 
@@ -76,10 +79,11 @@ buscar.addEventListener("click", () => {
   button.addEventListener("click", () => {
     if (input.value.trim().length > 0) {
       input.style.border = "";
-      localStorage.setItem("municipio", input.value.trim());
+      localStorage.setItem("municipio", input.value.split(' ').join(''));
       window.location.href = "cadaMunicipio.php";
     } else {
       input.style.border = "2px red solid";
     }
   });
 });
+}

@@ -19,7 +19,7 @@ function validarTelefono(telefono) {
 
 async function login() {
   let url = new URL(
-    `http://localhost:3000/xampp/htdocs/Aplicacion/servidorAcceso.php`
+    `http://localhost:3000/xampp/htdocs/Aplicacion/servidor/servidorAcceso.php`
   );
   usuario = null;
   let user = document.getElementById("login-name");
@@ -72,7 +72,7 @@ async function login() {
 
 async function registro() {
   let url = new URL(
-    "http://localhost:3000/xampp/htdocs/Aplicacion/servidorRegistro.php"
+    "http://localhost:3000/xampp/htdocs/Aplicacion/servidor/servidorRegistro.php"
   );
   let ok = true;
   let error = document.getElementsByClassName("error")[0];
@@ -169,7 +169,7 @@ async function registro() {
 
 async function recuperar() {
   let url = new URL(
-    `http://localhost:3000/xampp/htdocs/Aplicacion/servidorRecuperar.php`
+    `http://localhost:3000/xampp/htdocs/Aplicacion/servidor/servidorRecuperar.php`
   );
   let ok = false;
   usuario = null;
@@ -301,7 +301,7 @@ async function recuperar() {
 
 async function contacto() {
   let url = new URL(
-    `http://localhost:3000/xampp/htdocs/Aplicacion/servidorContacto.php`
+    `http://localhost:3000/xampp/htdocs/Aplicacion/servidor/servidorContacto.php`
   );
   let ok = true;
   let nombre = document.getElementById("nombre");
