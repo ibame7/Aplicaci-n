@@ -72,7 +72,7 @@ if (isset($_POST['nombre'], $_POST['user'], $_POST['apellido1'], $_POST['apellid
 
         if ($insercion->rowCount() > 0) {
             $bd->commit();
-            $_SESSION['usuario'] = ['username' => $usuario, 'nombre' => $nombre, 'primerApellido' => $primerApellido, 'segundoApellido' => $segundoApellido, 'correo' => $correo];
+            $_SESSION['usuario'] = ['username' => $usuario, 'nombre' => $nombre, 'apellido1' => $primerApellido, 'apellido2' => $segundoApellido, 'correo' => $correo];
             $_SESSION['tipo'] = "consumidor";
 
             $bd->exec("INSERT INTO consumidor (reservas_realizadas, consumidor) VALUES (0, '$usuario')");

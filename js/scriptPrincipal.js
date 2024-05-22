@@ -33,15 +33,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 let faq = document.getElementById("faq");
+if(faq){
 faq.addEventListener("click", () => {
   window.location.href = "faq.php";
 });
+}
 
 let buscar = document.getElementById("buscarInstalacion");
-/////////////////////////////////////////////////MODIFICAR BOTON/////////////////////////////////////////////////////
 if(buscar){
-
-
 buscar.addEventListener("click", () => {
   let poPup = document.querySelector(".popup-container");
 

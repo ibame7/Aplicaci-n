@@ -1,13 +1,10 @@
 <?php 
 session_start();
-
 if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
     header("Location:index.php");
     exit;
-} else {
-    echo '
+} else {?>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,4 +44,5 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
 </body>
 <script src="js/scriptLogin.js"></script>
 </html>';
-}
+<?php
+}?>
