@@ -23,8 +23,10 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 padding: 0;
                 box-sizing: border-box;
             }
-
+            
+.
             .modal {
+                
                 display: none;
                 position: fixed;
                 z-index: 1;
@@ -37,7 +39,8 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             .modal-content {
-                background-color: #fefefe;
+                background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));;
+
                 margin: 15% auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -60,6 +63,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             .barraLateral {
+                background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));;
                 width: 250px;
                 background-color: #333;
                 color: white;
@@ -70,6 +74,8 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             .barraLateral a {
+                font-weight: bold;
+
                 display: block;
                 color: white;
                 padding: 16px;
@@ -89,7 +95,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
 
             .cabecera {
                 padding: 10px;
-                background: #333;
+                background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
                 color: white;
                 text-align: center;
             }
@@ -212,6 +218,74 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                     /* Centra el texto */
                 }
             }
+
+            .reservas-container, .resenia-container {
+                display: flex;
+                /* Utilizamos flexbox */
+                flex-wrap: wrap;
+                /* Permite que los elementos se envuelvan en varias líneas si es necesario */
+                /* justify-content: space-around; */
+                /* Distribuye uniformemente los elementos a lo largo del contenedor */
+                align-items: center;
+                /* Centra verticalmente los elementos */
+                gap: 10px;
+                /* Espacio entre los elementos */
+                height: 20px;
+                /* Ajusta la altura automáticamente */
+                width: 100%;
+                padding-top: 80px;
+                /* Ocupa todo el ancho disponible */
+            }
+
+            .reserva, .resenia {
+                padding: 20px;
+                color: white;
+                font-weight: bolder;
+                border-radius: 8px;
+                background: linear-gradient(rgba(104, 133, 208, 0.8),rgba(4, 1, 66, 1));;
+                height: 300px;
+                text-align: center;
+                /* Centra el contenido dentro de cada elemento */
+                /* Añade margen para evitar que los elementos se peguen al contenedor */
+                margin: 10px;
+                /* Establece el ancho base de cada elemento para ocupar un tercio del contenedor */
+                flex-basis: calc(33.33% - 100px);
+                /* Restamos el espacio entre elementos para evitar desbordamiento */
+            }
+            .reserva button, .resenia button {
+                    border-radius: 5px;
+                    border-style: none;
+                    width: 20%;
+                    background-color: red;
+                    font-weight: bold;
+                    /* Ajustar el ancho del botón al 100% del contenedor */
+                }
+
+            /* Ajuste para dispositivos con pantalla más pequeña */
+            /* Ajuste para dispositivos con pantalla más pequeña */
+            @media screen and (max-width: 768px) {
+                .reserva, .resenia {
+                    
+                    flex-basis: calc(50% - 20px);
+                    /* Para mostrar dos elementos por fila en pantallas más pequeñas */
+                    padding: 10px;
+                    /* Reducir el padding para dejar más espacio para el contenido */
+                }
+
+                .reservas-container, .resenia-container {
+                    padding-top: 100px;
+                    /* Reduce el espacio superior para dejar más espacio en pantallas pequeñas */
+                    justify-content: center;
+                    /* Alinea los elementos al principio del contenedor */
+                }
+
+                .reserva button, .resenia button {
+                    width: 50%;
+                    /* Ajustar el ancho del botón al 100% del contenedor */
+                }
+
+                
+            }
         </style>
     </head>
 
@@ -322,12 +396,11 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
 
             </div>
 
-            <div id="reservas" style="display:none">
-                <h1>reservas</h1>
+
+            <div id="reservas" class="reservas-container" style="display:none">
             </div>
 
-            <div id="resenias" style="display:none">
-                <h1>resenias</h1>
+            <div id="resenias" class="reservas-container" style="display:none">
             </div>
         </div>
 

@@ -1,23 +1,27 @@
 let cambioDatos = document.getElementById("cambioDatos");
 let cambioContrasenia = document.getElementById("cambioContrasenia");
+let reservasBoton = document.getElementById("reservasBoton");
+let reseniasBoton = document.getElementById("reseniasBoton");
 let usuario;
+let reservas;
+let pistas;
 
 function showContent(id) {
   let perfil = document.getElementById("perfil");
   let reservas = document.getElementById("reservas");
   let resenias = document.getElementById("resenias");
   if (id == "perfil") {
-    perfil.style.display = "block";
+    perfil.style.display = "";
     reservas.style.display = "none";
     resenias.style.display = "none";
   } else if (id == "reservas") {
     perfil.style.display = "none";
-    reservas.style.display = "block";
+    reservas.style.display = "";
     resenias.style.display = "none";
   } else if (id == "resenias") {
     perfil.style.display = "none";
     reservas.style.display = "none";
-    resenias.style.display = "block";
+    resenias.style.display = "";
   }
 }
 async function mostrarDatos() {
@@ -143,8 +147,8 @@ async function modificarContrasenia() {
 
   if (ok) {
     let datos = {
-        password: password.value,
-        confirmPassword: confirmPassword.value,
+      password: password.value,
+      confirmPassword: confirmPassword.value,
     };
 
     let options = {
@@ -171,6 +175,125 @@ async function modificarContrasenia() {
   }
 }
 
+async function sacarReservas(str) {
+  await fetch("servidor/servidorReservas.php?usuario=" + usuario.username)
+    .then(function (response) {
+      return response.json(); // Este response.json() que devolvemos...
+    })
+    .then((data) => {
+      reservas = data[0].reservas;
+      pistas = data[0].pistas;
+
+      if (str == "reservas") {
+        pintarReservas(data[0], "reservas");
+      } else if (str == "pistas") {
+        pintarReservas(data[0], "pistas");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
+}
+
+function pintarReservas(data, str) {
+  let divReservas = document.getElementById("reservas");
+  let divResenia = document.getElementById("resenias");
+
+  divReservas.innerHTML = "";
+  divResenia.innerHTML = "";
+
+  if (data.error) {
+    let h2 = document.createElement("h2");
+    h2.innerHTML = data.error;
+    divReservas.appendChild(h2);
+  } else {
+    data.reservas.forEach((item) => {
+      let divElement = document.createElement("div");
+      divElement.className = "reserva";
+
+      let h4 = document.createElement("h4");
+      h4.innerHTML = `Reserva ID: ${item.id_reserva}`;
+      divElement.appendChild(h4);
+
+      if (str === "reservas") {
+        let fechaInicio = new Date(item.fecha_start);
+        let fechaFinal = new Date(item.fecha_finish);
+
+        let pFecha = document.createElement("p");
+        pFecha.innerHTML =
+          "Fecha: " +
+          fechaInicio.getDate() +
+          "/" +
+          (fechaInicio.getMonth() + 1) +
+          "/" +
+          fechaInicio.getFullYear();
+        divElement.appendChild(pFecha);
+
+        let pHora = document.createElement("p");
+        pHora.innerHTML = "Hora Inicio: " + fechaInicio.getHours() + ":00";
+        divElement.appendChild(pHora);
+
+        let pHoraFinal = document.createElement("p");
+        pHoraFinal.innerHTML = "Hora Final: " + fechaFinal.getHours() + ":00";
+        divElement.appendChild(pHoraFinal);
+
+        let pImporte = document.createElement("p");
+        pImporte.innerHTML = "Precio: " + item.importe + "€";
+        divElement.appendChild(pImporte);
+
+        let btnEliminar = document.createElement("button");
+        btnEliminar.innerHTML = "Anular";
+        btnEliminar.addEventListener("click", () =>
+          eliminarReserva(item.id_reserva)
+        );
+        divElement.appendChild(btnEliminar);
+
+        divReservas.appendChild(divElement);
+      }
+    });
+
+    // Bloque para manejar la visualización de las pistas
+    if (str === "pistas") {
+      data.pistas.forEach((pista) => {
+        let divPista = document.createElement("div");
+        divPista.className = "reserva";
+    
+        let h4 = document.createElement("h4");
+        h4.innerHTML = `Nombre de la Pista: ${pista.nombre}`;
+        divPista.appendChild(h4);
+    
+        // Filtrar las reservas solo para la pista actual
+        let reservasPista = data.reservas.filter(reserva => reserva.pista === pista.id);
+    
+        reservasPista.forEach((reserva) => {
+          let puntuacion = document.createElement("p");
+          puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
+          divPista.appendChild(puntuacion);
+    
+          let comentario = document.createElement("p");
+          comentario.innerHTML = "Comentario: " + reserva.comentario;
+          divPista.appendChild(comentario);
+        });
+    
+        divResenia.appendChild(divPista);
+      });
+    }
+    
+  }      
+}
+
+async function eliminarReserva(idReserva) {
+  await fetch(`servidor/servidorReservas.php?borrar=${idReserva}`)
+    .then((data) => {
+      if (data.ok) {
+        window.location.reload();
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("username").disabled = true;
   mostrarDatos();
@@ -185,3 +308,10 @@ cambioContrasenia.addEventListener("click", async (event) => {
   modificarContrasenia();
 });
 
+reservasBoton.addEventListener("click", async () => {
+  sacarReservas("reservas");
+});
+
+reseniasBoton.addEventListener("click", async () => {
+  sacarReservas("pistas");
+});
