@@ -254,29 +254,60 @@ function pintarReservas(data, str) {
 
     // Bloque para manejar la visualización de las pistas
     if (str === "pistas") {
-      data.pistas.forEach((pista) => {
+      
+      data.reservas.forEach((reserva)=>{
         let divPista = document.createElement("div");
+        let i=0;
+        data.pistas.forEach((pista)=>{
+          if(reserva.pista === pista.id){
+            i++;
+            if(i<=1){
+              let h4 = document.createElement("h4");
+              h4.innerHTML = `Nombre de la Pista: ${pista.nombre}`;
+              divPista.appendChild(h4);
+            }
+            
+          }
+        })
+        
         divPista.className = "reserva";
-    
-        let h4 = document.createElement("h4");
-        h4.innerHTML = `Nombre de la Pista: ${pista.nombre}`;
-        divPista.appendChild(h4);
-    
-        // Filtrar las reservas solo para la pista actual
-        let reservasPista = data.reservas.filter(reserva => reserva.pista === pista.id);
-    
-        reservasPista.forEach((reserva) => {
-          let puntuacion = document.createElement("p");
-          puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
-          divPista.appendChild(puntuacion);
-    
-          let comentario = document.createElement("p");
-          comentario.innerHTML = "Comentario: " + reserva.comentario;
-          divPista.appendChild(comentario);
-        });
-    
+
+        let puntuacion = document.createElement("p");
+        puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
+        divPista.appendChild(puntuacion);
+  
+       
+
+        let comentario = document.createElement("p");
+        comentario.innerHTML = "Comentario: " + reserva.comentario;
+        divPista.appendChild(comentario);
         divResenia.appendChild(divPista);
-      });
+
+      })
+
+
+      // data.pistas.forEach((pista) => {
+      //   let divPista = document.createElement("div");
+      //   divPista.className = "reserva";
+    
+      //   let h4 = document.createElement("h4");
+      //   h4.innerHTML = `Nombre de la Pista: ${pista.nombre}`;
+      //   divPista.appendChild(h4);
+    
+      //   // Filtrar las reservas solo para la pista actual
+      //   let reservasPista = data.reservas.filter(reserva => reserva.pista === pista.id);
+    
+      //   reservasPista.forEach((reserva) => {
+      //     let puntuacion = document.createElement("p");
+      //     puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
+      //     divPista.appendChild(puntuacion);
+    
+      //     let comentario = document.createElement("p");
+      //     comentario.innerHTML = "Comentario: " + reserva.comentario;
+      //     divPista.appendChild(comentario);
+      //   });
+    
+      
     }
     
   }      
@@ -298,6 +329,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("username").disabled = true;
   mostrarDatos();
 });
+
 cambioDatos.addEventListener("click", async (event) => {
   event.preventDefault();
   modificarDatos();

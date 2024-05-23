@@ -252,6 +252,10 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 flex-basis: calc(33.33% - 100px);
                 /* Restamos el espacio entre elementos para evitar desbordamiento */
             }
+            .reserva:hover, .resenia:hover{
+                background: linear-gradient(rgba(223, 92, 60, 0.8),rgba(4, 1, 66, 1));
+                cursor: pointer;
+            }
             .reserva button, .resenia button {
                     border-radius: 5px;
                     border-style: none;
