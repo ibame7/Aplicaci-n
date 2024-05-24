@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
 } else {
     ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
 
     <head>
         <meta charset="UTF-8">

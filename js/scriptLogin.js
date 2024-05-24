@@ -308,6 +308,7 @@ async function contacto() {
   let correo = document.getElementById("email");
   let telefono = document.getElementById("telefono");
   let mensaje = document.getElementById("mensaje");
+  let estado = "sin responder";
   let div = document.getElementsByClassName("formulario")[0];
   let error = document.getElementsByClassName("error")[0];
 
@@ -343,6 +344,7 @@ async function contacto() {
       correo: correo.value,
       telefono: telefono.value,
       mensaje: mensaje.value,
+      estado:estado
     };
 
     let options = {
