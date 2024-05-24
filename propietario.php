@@ -519,7 +519,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
 
             <div id="modal_container2" class="modal-container2">
                 <div class="modal2">
-                    <h1>Cambiar Datos</h1>
+                    <h1>Datos</h1>
                     <form>
                         <div class="form-group">
                             <label for="nombre">Nombre</label>

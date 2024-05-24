@@ -93,28 +93,16 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             .deleteButton {
-                width: 30%;
+                width: 90%;
                 font-size: 1rem;
                 padding: 5px;
                 text-align: center;
-                margin: 10px;
+                margin: 5px;
                 background: linear-gradient(rgba(243, 90, 85, 0.8), rgba(255, 8, 0, 0.8));
                 color: white;
-                font-weight: bolder;
                 border-color: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
             }
 
-            .modificarButton {
-                text-align: center;
-                font-size: 1rem;
-                padding: 5px 19px 5px 5px;
-                width: 30%;
-                margin: 10px;
-                background: linear-gradient(rgba(230, 187, 150, 0.8), rgba(255, 120, 0, 0.8));
-                color: white;
-                font-weight: bolder;
-                border-color: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
-            }
 
             .modal {
 
@@ -225,7 +213,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 background-color: #575757;
             }
 
-            #propietario {
+            #propietario, #comienzo {
                 max-width: 70vw;
                 margin: auto;
                 /* Centra horizontalmente */
@@ -460,23 +448,27 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             <div class="cabecera">
                 <h2>Menú</h2>
             </div>
-            <a id="perfilBoton" class="apartado" onclick="showContent('propietario')">Propietarios</a>
-            <a id="pistasBoton" class="apartado" onclick="showContent('usuarios')">Usuarios</a>
-            <a id="pistasBoton" class="apartado" onclick="showContent('reservas')">Reservas</a>
-            <a id="pistasBoton" class="apartado" onclick="showContent('contactos')">Contactos</a>
+            <a id="navPropietario" class="apartado" onclick="showContent('propietario')">Propietarios</a>
+            <a id="navConsumidor" class="apartado" onclick="showContent('usuarios')">Usuarios</a>
+            <a id="navReservas" class="apartado" onclick="showContent('reservas')">Reservas</a>
+            <a id="navContactos" class="apartado" onclick="showContent('contactos')">Contactos</a>
             <a id="cerrarBoton" href="cerrarsesion.php">Salir</a>
         </div>
         <div class="contenido-Principal">
-            <div id="propietario" style="display:block">
+            <div id="comienzo">
+                <img src="imagenes/Proyecto nuevo.png">
+            </div>
+            <div id="propietario" style="display:none">
             <table id="dynamicTable">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>nombre</th>
-                            <th>deporte</th>
-                            <th>precio</th>
-                            <th>¿Activo?</th>
-                            <th> </th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>Correo</th>
+                            <th>Localidad</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -504,37 +496,43 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
 
             <div id="modal_container2" class="modal-container2">
                 <div class="modal2">
-                    <h1>Cambiar Datos</h1>
+                    <h1>Datos</h1>
                     <form>
                         <div class="form-group">
+                            <label for="Pueblo">Pueblo</label>
+                            <input type="text" id="propietarioPueblo" name="Pueblo">
+                        </div>
+                        <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="pistaNombre" name="nombre">
+                            <input type="text" id="propietarioNombre" name="nombre">
                         </div>
                         <div class="form-group">
-                            <label for="deporte">Deporte</label>
-                            <input type="text" id="pistaDeporte" name="deporte">
+                            <label for="primerApellido">Primer Apellido</label>
+                            <input type="text" id="primerApellido" name="primerApellido">
                         </div>
                         <div class="form-group">
-                            <label for="precio">Precio</label>
-                            <input type="numbre" step="any" id="pistaPrecio" name="precio">
+                            <label for="segundoApellido">Segundo Apellido</label>
+                            <input type="text" id="segundoApellido" name="segundoApellido">
                         </div>
                         <div class="form-group">
-                            <label for="activo">¿Activo?</label>
-                            <input type="text" id="pistaActivo" name="activo">
+                            <label for="correo">Correo</label>
+                            <input type="email" id="propietariocorreo" name="correo">
                         </div>
                         <div class="form-group">
-                            <p id="error" style="color:red"></p>
+                            <label for="contrasenia">Contraseña</label>
+                            <input type="password" id="propietariocontrasenia" name="contrasenia">
                         </div>
+                        <div id="divError" style="color:red"></div>
                         <div class="form-group">
-                            <button id="modificarPista" type="button">Aceptar</button>
+                            <button id="aniadirPropietario" type="button">Aceptar</button>
                         </div>
                     </form>
                     <button id="close">Cancelar</button>
                 </div>
             </div>
         </div>
-        <div id="reservas"><h1>reservas</h1></div>
-        <div id="contactos"><h1>contactos</h1></div>
+        <div id="reservas" style="display:none"><h1>reservas</h1></div>
+        <div id="contactos" style="display:none"><h1>contactos</h1></div>
 
 
     </body>

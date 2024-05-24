@@ -218,6 +218,10 @@ function pintarReservas(data, str) {
       if (str === "reservas") {
         let fechaInicio = new Date(item.fecha_start);
         let fechaFinal = new Date(item.fecha_finish);
+        let fechaActual = new Date();
+        let diferenciaMilisegundos =
+          fechaActual.getTime() - fechaInicio.getTime();
+        var diferenciaHoras = diferenciaMilisegundos / (1000 * 60 * 60);
 
         let pFecha = document.createElement("p");
         pFecha.innerHTML =
@@ -243,10 +247,20 @@ function pintarReservas(data, str) {
 
         let btnEliminar = document.createElement("button");
         btnEliminar.innerHTML = "Anular";
-        btnEliminar.addEventListener("click", () =>
-          eliminarReserva(item.id_reserva)
-        );
-        divElement.appendChild(btnEliminar);
+
+        if (fechaInicio < fechaActual) {
+          btnEliminar.style = "disabled";
+        } else {
+          divElement.appendChild(btnEliminar);          
+            btnEliminar.addEventListener("click", () =>{
+              if (Math.abs(diferenciaHoras) < 1) {
+                alert("Hay que anular con una hora de antelación como mínimo");
+              } else {
+              eliminarReserva(item.id_reserva)
+            }
+        });
+          
+        }
 
         divReservas.appendChild(divElement);
       }
@@ -254,41 +268,33 @@ function pintarReservas(data, str) {
 
     // Bloque para manejar la visualización de las pistas
     if (str === "pistas") {
-      
-      data.reservas.forEach((reserva)=>{
+      data.reservas.forEach((reserva) => {
         let divPista = document.createElement("div");
-        let i=0;
-        data.pistas.forEach((pista)=>{
-          if(reserva.pista === pista.id){
+        let i = 0;
+        data.pistas.forEach((pista) => {
+          if (reserva.pista === pista.id) {
             i++;
-            if(i<=1){
+            if (i <= 1) {
               let h4 = document.createElement("h4");
               h4.innerHTML = `Nombre de la Pista: ${pista.nombre}`;
               divPista.appendChild(h4);
             }
-            
           }
-        })
-        
+        });
+
         divPista.className = "reserva";
 
         let puntuacion = document.createElement("p");
         puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
         divPista.appendChild(puntuacion);
-  
-       
 
         let comentario = document.createElement("p");
         comentario.innerHTML = "Comentario: " + reserva.comentario;
         divPista.appendChild(comentario);
         divResenia.appendChild(divPista);
-
-      })
-    
-      
+      });
     }
-    
-  }      
+  }
 }
 
 async function eliminarReserva(idReserva) {
