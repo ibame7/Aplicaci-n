@@ -27,6 +27,26 @@ if (isset($_GET['propietarioBorrar'])) {
     $consulta = $bd->exec("DELETE FROM user WHERE username='$propietario'");
 
     echo json_encode(["ok" => "Propietario borrado"]);
+} else if (isset($_GET['usuarioBorrar'])) {
+    $usuario = $_GET["usuarioBorrar"];
+    try {
+        $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Ha ocurrido un error al conectarse a la base de datos. Avisa al soporte técnico']);
+        exit;
+    }
+
+
+    //borrar reserva
+    $consulta = $bd->exec("DELETE FROM reserva WHERE consumidor =(SELECT id FROM consumidor WHERE consumidor ='$usuario')");
+    
+    //borrar consumidor
+    $consulta = $bd->exec("DELETE FROM consumidor WHERE consumidor='$usuario'");
+
+    //borrar usuario
+    $consulta = $bd->exec("DELETE FROM user WHERE username='$usuario'");
+
+    echo json_encode(["ok" => "Usuario borrado"]);
 } else if (
     isset($_POST['nombre'], $_POST['apellido1'], $_POST['apellido2'], $_POST['correo'], $_POST['contrasenia'], $_POST['pueblo']) && !empty($_POST['nombre'])
     && !empty($_POST['apellido1']) && !empty($_POST['apellido2']) && !empty($_POST['correo']) && !empty($_POST['contrasenia']) && !empty($_POST['pueblo'])
@@ -40,8 +60,6 @@ if (isset($_GET['propietarioBorrar'])) {
     $pueblo = $_POST['pueblo'];
     $palabraMinusculas = strtolower($pueblo);
     $username = $palabraMinusculas . "123";
-
-
 
     try {
         $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');

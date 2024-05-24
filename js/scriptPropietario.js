@@ -178,12 +178,11 @@ function pintarPistas(data) {
       activoCell.textContent = item.activo == 1 ? "SÍ" : "NO";
 
       let deleteButton = document.createElement("button");
-      deleteButton.textContent = "Eliminar";
+      deleteButton.textContent = "X";
       deleteButton.classList.add("deleteButton");
       deleteButton.onclick = function () {
         deleteRow(this, item.id);
       };
-      eliminarCell.appendChild(deleteButton);
       let modificarButton = document.createElement("button");
       modificarButton.textContent = "Modificar";
       modificarButton.classList.add("modificarButton");
@@ -191,6 +190,8 @@ function pintarPistas(data) {
         modificarRow(item.id);
       };
       eliminarCell.appendChild(modificarButton);
+      eliminarCell.appendChild(deleteButton);
+
     });
 
     table.appendChild(tbody);

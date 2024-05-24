@@ -93,7 +93,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             .deleteButton {
-                width: 30%;
+                width: 15%;
                 font-size: 1rem;
                 padding: 5px;
                 text-align: center;
@@ -108,7 +108,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 text-align: center;
                 font-size: 1rem;
                 padding: 5px 19px 5px 5px;
-                width: 30%;
+                width: 45%;
                 margin: 10px;
                 background: linear-gradient(rgba(230, 187, 150, 0.8), rgba(255, 120, 0, 0.8));
                 color: white;

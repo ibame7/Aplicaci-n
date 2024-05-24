@@ -43,6 +43,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             * {
                 box-sizing: border-box;
             }
+
             .modal-container2 button {
                 background-color: #47a386;
                 border: 0;
@@ -213,7 +214,8 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 background-color: #575757;
             }
 
-            #propietario, #comienzo {
+            #propietario,
+            #comienzo {
                 max-width: 70vw;
                 margin: auto;
                 /* Centra horizontalmente */
@@ -458,41 +460,10 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             <div id="comienzo">
                 <img src="imagenes/Proyecto nuevo.png">
             </div>
-            <div id="propietario" style="display:none">
-            <table id="dynamicTable">
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Nombre</th>
-                            <th>Primer Apellido</th>
-                            <th>Segundo Apellido</th>
-                            <th>Correo</th>
-                            <th>Localidad</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            <div id="propietario" style="display:none"> </div>
 
 
-            <div id="usuarios" class="pistas-container" style="display:none">
-                <table id="dynamicTable">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>nombre</th>
-                            <th>deporte</th>
-                            <th>precio</th>
-                            <th>¿Activo?</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            <div id="usuarios" class="pistas-container" style="display:none"> </div>
 
             <div id="modal_container2" class="modal-container2">
                 <div class="modal2">
@@ -531,8 +502,12 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 </div>
             </div>
         </div>
-        <div id="reservas" style="display:none"><h1>reservas</h1></div>
-        <div id="contactos" style="display:none"><h1>contactos</h1></div>
+        <div id="reservas" style="display:none">
+            <h1>reservas</h1>
+        </div>
+        <div id="contactos" style="display:none">
+            <h1>contactos</h1>
+        </div>
 
 
     </body>

@@ -1,31 +1,29 @@
-let navPropietario=document.getElementById("navPropietario");
-let navConsumidor=document.getElementById("navConsumidor");
-let navReservas=document.getElementById("navReservas");
-let navContactos=document.getElementById("navContactos");
-let aniadirPropietarioBoton=document.getElementById("aniadirPropietario");
+let navPropietario = document.getElementById("navPropietario");
+let navConsumidor = document.getElementById("navConsumidor");
+let navReservas = document.getElementById("navReservas");
+let navContactos = document.getElementById("navContactos");
+let aniadirPropietarioBoton = document.getElementById("aniadirPropietario");
 
-
-let botonAniadir=document.getElementsByClassName("aniadirButton")[0];
+let botonAniadir = document.getElementsByClassName("aniadirButton")[0];
 
 let open = document.getElementById("open");
 let modal_container2 = document.getElementById("modal_container2");
 let close = document.getElementById("close");
-let usuarios=[];
-let consumidores=[];
-let propietarios=[];
+let usuarios = [];
+let consumidores = [];
+let propietarios = [];
 
 function validarEmail(email) {
   const regex = /^[^\s@]+@gmail\.com$|^[^\s@]+@[^\s@]+\.[^\s@]+\.es$/;
   return regex.test(email);
 }
 
-
 function showContent(id) {
   let propietario = document.getElementById("propietario");
   let usuarios = document.getElementById("usuarios");
   let reservas = document.getElementById("reservas");
   let contactos = document.getElementById("contactos");
-  let comienzo=document.getElementById("comienzo");
+  let comienzo = document.getElementById("comienzo");
 
   if (id == "propietario") {
     comienzo.style.display = "none";
@@ -33,22 +31,19 @@ function showContent(id) {
     usuarios.style.display = "none";
     reservas.style.display = "none";
     contactos.style.display = "none";
-
   } else if (id == "usuarios") {
     comienzo.style.display = "none";
     propietario.style.display = "none";
     usuarios.style.display = "";
     reservas.style.display = "none";
     contactos.style.display = "none";
-
   } else if (id == "reservas") {
     comienzo.style.display = "none";
     propietario.style.display = "none";
     usuarios.style.display = "none";
     reservas.style.display = "";
     contactos.style.display = "none";
-  }
-  else if (id == "contactos") {
+  } else if (id == "contactos") {
     comienzo.style.display = "none";
     propietario.style.display = "none";
     usuarios.style.display = "none";
@@ -64,95 +59,155 @@ async function sacarUsuarios() {
     }
     let datos = await respuesta.json();
     usuarios = datos;
-    usuarios.forEach(usuario=>{
-      if(usuario.rol==="propietario"){
+    usuarios.forEach((usuario) => {
+      if (usuario.rol === "propietario") {
         propietarios.push(usuario);
-      }else if(usuario.rol==="consumidor"){
+      } else if (usuario.rol === "consumidor") {
         consumidores.push(usuario);
       }
     });
-
   } catch (error) {
     console.error("Hubo un error:", error);
-  } 
+  }
 }
 async function pintarPropietarios(data) {
   let divPropietarios = document.getElementById("propietario");
   divPropietarios.innerHTML = ""; // Limpiar el contenido del div
-  
-    // Crear la tabla
-    let table = document.createElement("table");
-    table.id = "dynamicTable";
 
-    // Crear thead
-    let thead = document.createElement("thead");
-    let theadRow = document.createElement("tr");
+  // Crear la tabla
+  let table = document.createElement("table");
+  table.id = "dynamicTable";
 
-    let headers = ["Usuario", "Nombre", "Primer Apellido", "Segundo Apellido", "Correo", "Localidad",""];
-    headers.forEach((headerText) => {
-      let th = document.createElement("th");
-      th.textContent = headerText;
-      theadRow.appendChild(th);
-    });
-    thead.appendChild(theadRow);
-    table.appendChild(thead);
+  // Crear thead
+  let thead = document.createElement("thead");
+  let theadRow = document.createElement("tr");
 
-    // Crear tbody
-    let tbody = document.createElement("tbody");
-    data.forEach((item) => {
-      let newRow = tbody.insertRow();
+  let headers = [
+    "Usuario",
+    "Nombre",
+    "Primer Apellido",
+    "Segundo Apellido",
+    "Correo",
+    "Localidad",
+    "",
+  ];
+  headers.forEach((headerText) => {
+    let th = document.createElement("th");
+    th.textContent = headerText;
+    theadRow.appendChild(th);
+  });
+  thead.appendChild(theadRow);
+  table.appendChild(thead);
 
-      let usuarioCell = newRow.insertCell(0);
-      let nombreCell = newRow.insertCell(1);
-      let primerCell = newRow.insertCell(2);
-      let segundoCell = newRow.insertCell(3);
-      let correoCell = newRow.insertCell(4);
-      let localidadCell = newRow.insertCell(5);
-      let buttonCell = newRow.insertCell(6);
-      
+  // Crear tbody
+  let tbody = document.createElement("tbody");
+  data.forEach((item) => {
+    let newRow = tbody.insertRow();
 
-      usuarioCell.textContent = item.username;
-      nombreCell.textContent = item.nombre;
-      primerCell.textContent = item.apellido1;
-      segundoCell.textContent = item.apellido2;
-      correoCell.textContent = item.correo;
-      localidadCell.textContent = item.localidad;
+    let usuarioCell = newRow.insertCell(0);
+    let nombreCell = newRow.insertCell(1);
+    let primerCell = newRow.insertCell(2);
+    let segundoCell = newRow.insertCell(3);
+    let correoCell = newRow.insertCell(4);
+    let localidadCell = newRow.insertCell(5);
+    let buttonCell = newRow.insertCell(6);
 
-      let deleteButton = document.createElement("button");
-      deleteButton.textContent = "X";
-      deleteButton.classList.add("deleteButton");
-      deleteButton.onclick = function () {
-        
-          deleteRow(this, item.username);
-        
-      };
-      buttonCell.appendChild(deleteButton);
+    usuarioCell.textContent = item.username;
+    nombreCell.textContent = item.nombre;
+    primerCell.textContent = item.apellido1;
+    segundoCell.textContent = item.apellido2;
+    correoCell.textContent = item.correo;
+    localidadCell.textContent = item.localidad;
 
-      
-    });
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "X";
+    deleteButton.classList.add("deleteButton");
+    deleteButton.onclick = function () {
+      deleteRow(this, item.username);
+    };
+    buttonCell.appendChild(deleteButton);
+  });
 
-    table.appendChild(tbody);
-    divPropietarios.appendChild(table);
-  
+  table.appendChild(tbody);
+  divPropietarios.appendChild(table);
+
   let aniadirButton = document.createElement("button");
   aniadirButton.textContent = "Añadir Propietario";
   aniadirButton.classList.add("aniadirButton");
   aniadirButton.onclick = function () {
     modal_container2.classList.add("show");
-
   };
   divPropietarios.appendChild(aniadirButton);
 
   divPropietarios.style.display = "block"; // Mostrar el contenedor de la tabla
 }
 
-function pintarConsumidores(params) {
-  
+function pintarConsumidores(data) {
+  let divConsumidores = document.getElementById("usuarios");
+  divConsumidores.innerHTML = ""; // Limpiar el contenido del div
+
+  // Crear la tabla
+  let table = document.createElement("table");
+  table.id = "dynamicTable";
+
+  // Crear thead
+  let thead = document.createElement("thead");
+  let theadRow = document.createElement("tr");
+
+  let headers = [
+    "Usuario",
+    "Nombre",
+    "Primer Apellido",
+    "Segundo Apellido",
+    "Correo",
+    "Reservas",
+    "",
+  ];
+  headers.forEach((headerText) => {
+    let th = document.createElement("th");
+    th.textContent = headerText;
+    theadRow.appendChild(th);
+  });
+  thead.appendChild(theadRow);
+  table.appendChild(thead);
+
+  // Crear tbody
+  let tbody = document.createElement("tbody");
+  data.forEach((item) => {
+    let newRow = tbody.insertRow();
+
+    let usuarioCell = newRow.insertCell(0);
+    let nombreCell = newRow.insertCell(1);
+    let primerCell = newRow.insertCell(2);
+    let segundoCell = newRow.insertCell(3);
+    let correoCell = newRow.insertCell(4);
+    let reservasCell = newRow.insertCell(5);
+    let buttonCell = newRow.insertCell(6);
+
+    usuarioCell.textContent = item.username;
+    nombreCell.textContent = item.nombre;
+    primerCell.textContent = item.apellido1;
+    segundoCell.textContent = item.apellido2;
+    correoCell.textContent = item.correo;
+    reservasCell.textContent = item.reservas;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "X";
+    deleteButton.classList.add("deleteButton");
+    deleteButton.onclick = function () {
+      deleteUser(this, item.username);
+    };
+    buttonCell.appendChild(deleteButton);
+  });
+
+  table.appendChild(tbody);
+  divConsumidores.appendChild(table);
+
+  divConsumidores.style.display = "block"; // Mostrar el contenedor de la tabla
 }
 
-
 async function aniadirPropietario() {
-  let error=document.getElementById("divError");
+  let error = document.getElementById("divError");
 
   let ok = true;
   let url = new URL(
@@ -187,13 +242,13 @@ async function aniadirPropietario() {
 
   if (ok) {
     let datos = {
-        nombre: nombre.value,
-        apellido1: apellido1.value,
-        apellido2: apellido2.value,
-        pueblo: pueblo.value,
-        correo: correo.value,
-        contrasenia: contrasenia.value
-      };    
+      nombre: nombre.value,
+      apellido1: apellido1.value,
+      apellido2: apellido2.value,
+      pueblo: pueblo.value,
+      correo: correo.value,
+      contrasenia: contrasenia.value,
+    };
 
     let options = {
       method: "POST",
@@ -220,10 +275,12 @@ async function aniadirPropietario() {
   }
 }
 
-
-
 async function deleteRow(button, id) {
-  if (confirm("¿Estás seguro? Si borras al propietario también eliminarás sus pistas")) {
+  if (
+    confirm(
+      "¿Estás seguro? Si borras al propietario también eliminarás sus pistas"
+    )
+  ) {
     await fetch("servidor/servidorAdmin.php?propietarioBorrar=" + id)
       .then(function (response) {
         return response.json(); // Este response.json() que devolvemos...
@@ -243,19 +300,40 @@ async function deleteRow(button, id) {
   }
 }
 
-
-
-
+async function deleteUser(button, id) {
+  if (
+    confirm(
+      "¿Estás seguro? Si borras al usuario también borrarás sus reservas"
+    )
+  ) {
+    await fetch("servidor/servidorAdmin.php?usuarioBorrar=" + id)
+      .then(function (response) {
+        return response.json(); // Este response.json() que devolvemos...
+      })
+      .then((data) => {
+        if (data.ok) {
+          alert(data.ok);
+          let row = button.parentNode.parentNode;
+          row.parentNode.removeChild(row);
+        } else {
+          alert(data.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   sacarUsuarios();
 });
 
-navPropietario.addEventListener("click",async()=>{
+navPropietario.addEventListener("click", async () => {
   pintarPropietarios(propietarios);
 });
 
-navConsumidor.addEventListener("click",async()=>{
+navConsumidor.addEventListener("click", async () => {
   pintarConsumidores(consumidores);
 });
 
@@ -263,10 +341,6 @@ close.addEventListener("click", () => {
   modal_container2.classList.remove("show");
 });
 
-
-  aniadirPropietarioBoton.addEventListener("click", async()=>{
-    aniadirPropietario();
-  })
-
-
-
+aniadirPropietarioBoton.addEventListener("click", async () => {
+  aniadirPropietario();
+});
