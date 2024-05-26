@@ -81,7 +81,93 @@ if (isset($_GET['propietarioBorrar'])) {
         echo json_encode(['error' => 'No se ha podido realizar la inserción']);
         exit;
     }
-} else {
+} else if(isset($_GET['reservas'])){
+    try {
+        $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Ha ocurrido un error al conectarse a la base de datos. Avisa al soporte técnico']);
+        exit;
+    }
+    $consulta = $bd->query("SELECT * FROM reserva");
+    $reservas = $consulta->fetchAll(PDO::FETCH_ASSOC);
+    $reservasFinales = [];
+    foreach ($reservas as $reserva) {     
+        $id_reserva = $reserva['id_reserva'];
+        $fecha = date('Y-m-d', strtotime($reserva['fecha_start']));        
+        $horaInicio = date('H:i', strtotime($reserva['fecha_start']));
+        $importe = $reserva['importe'];
+        $puntuacion = $reserva['puntuacion'];
+        $comentario = $reserva['comentario'];
+
+        $idUser=$reserva['consumidor'];
+        $consultaUser = $bd->query("SELECT consumidor FROM consumidor WHERE id='$idUser'");
+        $consumidor1 = $consultaUser->fetch(PDO::FETCH_ASSOC);
+
+        $consumidor =  $consumidor1['consumidor'];
+
+
+        $idPista=$reserva['pista'];
+        $consultaPista = $bd->query("SELECT nombre FROM pista WHERE id='$idPista'");
+        $pista1 = $consultaPista->fetch(PDO::FETCH_ASSOC);
+        $pista = $pista1['nombre'];
+
+        $reservaFinal = array(
+            'id_reserva' => $id_reserva,
+            'fecha' => $fecha,
+            'hora_inicio' => $horaInicio,
+            'importe' => $importe,
+            'puntuacion' => $puntuacion,
+            'comentario' => $comentario,
+            'consumidor' => $consumidor,
+            'pista' => $pista
+        );
+
+        $reservasFinales[] =$reservaFinal ;
+    }
+
+    echo json_encode($reservasFinales);
+
+}else if(isset($_GET['reservaBorrar'])){
+    $reserva = $_GET["reservaBorrar"];
+    try {
+        $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Ha ocurrido un error al conectarse a la base de datos. Avisa al soporte técnico']);
+        exit;
+    }
+    //borrar reserva
+    $consulta = $bd->exec("DELETE FROM reserva WHERE id_reserva ='$reserva'");
+
+    echo json_encode(["ok" => "Reserva borrada"]);
+}else if(isset($_GET['contactos'])){
+    try {
+        $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Ha ocurrido un error al conectarse a la base de datos. Avisa al soporte técnico']);
+        exit;
+    }
+    $consulta = $bd->query("SELECT * FROM contacto");
+    $contactos = $consulta->fetchAll(PDO::FETCH_ASSOC);    
+
+    echo json_encode($contactos);
+
+}else if(isset($_GET['contactoID'])){
+    $contacto = $_GET["contactoID"];
+    try {
+        $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Ha ocurrido un error al conectarse a la base de datos. Avisa al soporte técnico']);
+        exit;
+    }
+    //borrar reserva
+    $actualizacion = $bd->prepare("UPDATE contacto SET estado = :estado WHERE id = :idContacto");
+    $actualizacion->execute([
+        'idContacto' => $contacto,
+        'estado' => "Finalizado"
+    ]);
+    echo json_encode(["ok" => "Contacto finalizado"]);
+}
+    else {
     try {
         $bd = new PDO('mysql:host=localhost;dbname=reservayjuega;charset=utf8', 'root', '');
     } catch (PDOException $e) {

@@ -215,7 +215,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             #propietario,
-            #comienzo {
+            #comienzo, #reservas {
                 max-width: 70vw;
                 margin: auto;
                 /* Centra horizontalmente */
@@ -319,6 +319,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 /* Ajusta la altura automáticamente */
                 width: 100%;
                 padding-top: 80px;
+               
                 /* Ocupa todo el ancho disponible */
             }
 
@@ -358,7 +359,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                 text-align: left;
             }
 
-            .pistas-container {
+            .pistas-container, #reservas {
                 margin: 20px;
             }
 
@@ -391,8 +392,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                     /* Reducir el padding para dejar más espacio para el contenido */
                 }
 
-                .pistas-container,
-                .resenia-container {
+                .pistas-container, #reservas {
                     padding-top: 100px;
                     /* Reduce el espacio superior para dejar más espacio en pantallas pequeñas */
                     justify-content: center;
@@ -405,7 +405,17 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                     /* Ajustar el ancho del botón al 100% del contenedor */
                 }
 
-
+            }
+            #reservas, #contactos{
+                margin-top: 110px;
+            }
+            .editButton{
+                background-color: orangered;
+                color:white;
+                font-weight: bolder;
+                width: 80px;
+                border-radius: 5px;
+                border-style: none;
             }
         </style>
     </head>
@@ -501,14 +511,14 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                     <button id="close">Cancelar</button>
                 </div>
             </div>
-        </div>
+        
         <div id="reservas" style="display:none">
             <h1>reservas</h1>
         </div>
         <div id="contactos" style="display:none">
             <h1>contactos</h1>
         </div>
-
+        </div>
 
     </body>
     <script src="js/scriptPrincipal.js"></script>

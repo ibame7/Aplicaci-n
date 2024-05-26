@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2024 a las 11:02:51
+-- Tiempo de generación: 26-05-2024 a las 15:56:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -60,6 +60,32 @@ INSERT INTO `consumidor` (`id`, `reservas_realizadas`, `consumidor`) VALUES
 (10, 3, 'ibame'),
 (11, 1, 'joseant'),
 (12, 2, 'locas99');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contacto`
+--
+
+CREATE TABLE `contacto` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `correo` varchar(140) NOT NULL,
+  `telefono` varchar(9) NOT NULL,
+  `mensaje` varchar(240) NOT NULL,
+  `estado` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `contacto`
+--
+
+INSERT INTO `contacto` (`id`, `nombre`, `correo`, `telefono`, `mensaje`, `estado`) VALUES
+(1234, 'Juan', 'juan@gmail.com', '675981230', 'Hola buenas, me gustaría tener información para unirme a vosotros ', 'sin responder'),
+(12345, 'Pepe', 'pepe@gmail.com', '644654784', 'Hola buenas, me gustaría tener información acerca de la reserva de pistas deportiva', 'sin responder'),
+(20558, 'ismael', 'ismael@gmail.com', '654384932', 'Quiero trabajar con ustedes', 'Finalizado'),
+(21645, 'samuel', 'samuel@gmail.com', '634987235', 'Hola buenas tardes, me gustaria saber informacion acerca de cancelar reservas', 'Finalizado'),
+(76466, 'manuel', 'manuel@gmail.com', '654654654', 'Me gustaria que me llamaseis', 'sin responder');
 
 -- --------------------------------------------------------
 
@@ -193,6 +219,12 @@ ALTER TABLE `consumidor`
   ADD KEY `consumidor` (`consumidor`);
 
 --
+-- Indices de la tabla `contacto`
+--
+ALTER TABLE `contacto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `pista`
 --
 ALTER TABLE `pista`
@@ -235,19 +267,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de la tabla `consumidor`
 --
 ALTER TABLE `consumidor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `propietario`
 --
 ALTER TABLE `propietario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1246;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324313;
 
 --
 -- Restricciones para tablas volcadas

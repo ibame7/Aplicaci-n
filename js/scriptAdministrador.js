@@ -302,9 +302,7 @@ async function deleteRow(button, id) {
 
 async function deleteUser(button, id) {
   if (
-    confirm(
-      "¿Estás seguro? Si borras al usuario también borrarás sus reservas"
-    )
+    confirm("¿Estás seguro? Si borras al usuario también borrarás sus reservas")
   ) {
     await fetch("servidor/servidorAdmin.php?usuarioBorrar=" + id)
       .then(function (response) {
@@ -325,12 +323,215 @@ async function deleteUser(button, id) {
   }
 }
 
+async function deleteReserva(button, id) {
+  if (confirm("¿Estás seguro?")) {
+    await fetch("servidor/servidorAdmin.php?reservaBorrar=" + id)
+      .then(function (response) {
+        return response.json(); // Este response.json() que devolvemos...
+      })
+      .then((data) => {
+        if (data.ok) {
+          alert(data.ok);
+          let row = button.parentNode.parentNode;
+          row.parentNode.removeChild(row);
+        } else {
+          alert(data.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }
+}
+
+async function mostrarReservas() {
+  let reservas = "reservas";
+  await fetch("servidor/servidorAdmin.php?reservas=" + reservas)
+    .then(function (response) {
+      return response.json(); // Este response.json() que devolvemos...
+    })
+    .then((data) => {
+      pintarReservas(data);
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
+}
+
+async function pintarReservas(data) {
+  let divReservas = document.getElementById("reservas");
+  divReservas.innerHTML = ""; // Limpiar el contenido del div
+
+  // Crear la tabla
+  let table = document.createElement("table");
+  table.id = "dynamicTable";
+
+  // Crear thead
+  let thead = document.createElement("thead");
+  let theadRow = document.createElement("tr");
+
+  let headers = [
+    "Id",
+    "Fecha",
+    "Hora",
+    "Importe",
+    "Puntuación",
+    "Comentario",
+    "Consumidor",
+    "Pista",
+    "",
+  ];
+  headers.forEach((headerText) => {
+    let th = document.createElement("th");
+    th.textContent = headerText;
+    theadRow.appendChild(th);
+  });
+  thead.appendChild(theadRow);
+  table.appendChild(thead);
+
+  // Crear tbody
+  let tbody = document.createElement("tbody");
+  data.forEach((item) => {
+    let newRow = tbody.insertRow();
+
+    let idCell = newRow.insertCell(0);
+    let fechaCell = newRow.insertCell(1);
+    let horaCell = newRow.insertCell(2);
+    let importeCell = newRow.insertCell(3);
+    let puntuacionCell = newRow.insertCell(4);
+    let comentarioCell = newRow.insertCell(5);
+    let consumidorCell = newRow.insertCell(6);
+    let pistaCell = newRow.insertCell(7);
+    let buttonCell = newRow.insertCell(8);
+
+    idCell.textContent = item.id_reserva;
+    fechaCell.textContent = item.fecha;
+    horaCell.textContent = item.hora_inicio;
+    importeCell.textContent = item.importe + " €";
+    puntuacionCell.textContent = item.puntuacion;
+    comentarioCell.textContent = item.comentario;
+    consumidorCell.textContent = item.consumidor;
+    pistaCell.textContent = item.pista;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "X";
+    deleteButton.classList.add("deleteButton");
+    deleteButton.onclick = function () {
+      deleteReserva(this, item.id_reserva);
+    };
+    buttonCell.appendChild(deleteButton);
+  });
+
+  table.appendChild(tbody);
+  divReservas.appendChild(table);
+
+  divReservas.style.display = "block"; // Mostrar el contenedor de la tabla
+}
+
+async function mostrarContactos() {
+  let reservas = "contactos";
+  await fetch("servidor/servidorAdmin.php?contactos=" + contactos)
+    .then(function (response) {
+      return response.json(); // Este response.json() que devolvemos...
+    })
+    .then((data) => {
+      pintarContactos(data);
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
+}
+
+async function pintarContactos(data) {
+  let divContactos = document.getElementById("contactos");
+  divContactos.innerHTML = ""; // Limpiar el contenido del div
+
+  // Crear la tabla
+  let table = document.createElement("table");
+  table.id = "dynamicTable";
+
+  // Crear thead
+  let thead = document.createElement("thead");
+  let theadRow = document.createElement("tr");
+
+  let headers = ["Id", "Nombre", "Correo", "Teléfono", "Mensaje", "Estado", ""];
+  headers.forEach((headerText) => {
+    let th = document.createElement("th");
+    th.textContent = headerText;
+    theadRow.appendChild(th);
+  });
+  thead.appendChild(theadRow);
+  table.appendChild(thead);
+
+  // Crear tbody
+  let tbody = document.createElement("tbody");
+  data.forEach((item) => {
+    let newRow = tbody.insertRow();
+
+    let idCell = newRow.insertCell(0);
+    let nombreCell = newRow.insertCell(1);
+    let correoCell = newRow.insertCell(2);
+    let telefonoCell = newRow.insertCell(3);
+    let mensajeCell = newRow.insertCell(4);
+    let estadoCell = newRow.insertCell(5);
+    let buttonCell = newRow.insertCell(6);
+
+    idCell.textContent = item.id;
+    nombreCell.textContent = item.nombre;
+    correoCell.textContent = item.correo;
+    telefonoCell.textContent = item.telefono;
+    mensajeCell.textContent = item.mensaje;
+    estadoCell.textContent = item.estado;
+    if (item.estado != "Finalizado") {
+      let editButton = document.createElement("button");
+      editButton.textContent = "Finalizar";
+      editButton.classList.add("editButton");
+
+      editButton.onclick = function () {
+        editContacto(this, item.id);
+      };
+      buttonCell.appendChild(editButton);
+    }
+  });
+
+  table.appendChild(tbody);
+  divContactos.appendChild(table);
+
+  divContactos.style.display = "block"; // Mostrar el contenedor de la tabla
+}
+
+async function editContacto(button,id) {
+  if (confirm("¿Estás seguro?")) {
+    await fetch("servidor/servidorAdmin.php?contactoID=" + id)
+      .then(function (response) {
+        return response.json(); // Este response.json() que devolvemos...
+      })
+      .then((data) => {
+        if (data.ok) {
+          alert(data.ok);
+          let row = button.parentNode;
+          row.removeChild(button);
+        } else {
+          alert(data.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }
+}
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   sacarUsuarios();
 });
 
 navPropietario.addEventListener("click", async () => {
   pintarPropietarios(propietarios);
+  1;
 });
 
 navConsumidor.addEventListener("click", async () => {
@@ -343,4 +544,12 @@ close.addEventListener("click", () => {
 
 aniadirPropietarioBoton.addEventListener("click", async () => {
   aniadirPropietario();
+});
+
+navReservas.addEventListener("click", async () => {
+  mostrarReservas();
+});
+
+navContactos.addEventListener("click", async () => {
+  mostrarContactos();
 });
