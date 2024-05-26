@@ -107,19 +107,19 @@ CREATE TABLE `pista` (
 --
 
 INSERT INTO `pista` (`id`, `nombre`, `deporte`, `precio`, `activo`, `propietario`) VALUES
-('ara1', 'Polideportivo Municipal de Arahal', 'Futbol 11', 8.5, 1, 'arahal123'),
+('ara1', 'Polideportivo Municipal de Arahal', 'Futbol', 8.5, 1, 'arahal123'),
 ('ara2', 'Polideportivo Municipal de Arahal', 'Baloncesto', 6, 0, 'arahal123'),
 ('ara3', 'Club Tenis Nadal Arahal', 'Tenis', 12, 1, 'arahal123'),
 ('ara4', 'Cyan Padel', 'Padel', 4, 0, 'arahal123'),
-('mar1', 'Polideportivo Miguelete', 'Futbol 11', 10, 1, 'marchena123'),
+('mar1', 'Polideportivo Miguelete', 'Futbol', 10, 1, 'marchena123'),
 ('mar2', 'Polideportivo Municipal Marchena', 'Tenis', 7, 1, 'marchena123'),
-('mar3', 'Club Camino Hondo', 'Basloncesto', 10, 0, 'marchena123'),
+('mar3', 'Club Camino Hondo', 'Baloncesto', 10, 0, 'marchena123'),
 ('mar4', 'Club San Ginés', 'Futbol Sala', 10, 1, 'marchena123'),
 ('mor1', 'Polideportivo Municipal Morón de la Frontera', 'Padel', 5, 1, 'moron123'),
 ('mor2', 'Polideportivo Municipal Morón de la Frontera', 'Tenis', 8, 1, 'moron123'),
-('mor3', 'Polideportivo Municipal Morón de la Frontera', 'Futbol 7', 9, 1, 'moron123'),
-('mor4', 'Polideportivo Municipal Morón de la Frontera', 'Futbol 7', 9, 1, 'moron123'),
-('mor5', 'Polideportivo Municipal Morón de la Frontera', 'Futbol 11', 15, 1, 'moron123'),
+('mor3', 'Polideportivo Municipal Morón de la Frontera', 'Futbol', 9, 1, 'moron123'),
+('mor4', 'Polideportivo Municipal Morón de la Frontera', 'Futbol', 9, 1, 'moron123'),
+('mor5', 'Polideportivo Municipal Morón de la Frontera', 'Futbol', 15, 1, 'moron123'),
 ('par1', 'Pabellón Municipal José Martínez', 'Balonmano', 6, 0, 'paradas123'),
 ('par2', 'Complejo Deportivo ParadasCity', 'Baloncesto', 5, 1, 'paradas123');
 

@@ -39,8 +39,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
             }
 
             .modal-content {
-                background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));;
-
+                background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
                 margin: 15% auto;
                 padding: 20px;
                 border: 1px solid #888;

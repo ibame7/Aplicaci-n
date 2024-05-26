@@ -49,7 +49,7 @@ async function pintarInstalaciones(instalaciones){
     h3.textContent=instalacion.nombre;
 
     let p=document.createElement("p");
-    p.textContent=instalacion.precio+" €";
+    p.textContent=instalacion.precio+" €/hora";
 
     divInstalacion.addEventListener("click",async()=>{
       reservar();
@@ -65,7 +65,7 @@ async function pintarInstalaciones(instalaciones){
         divInstalacion.id="divFutbol";
         break;
       case "Futbol Sala":
-        divInstalacion.id="divFutbolSala";
+        divInstalacion.id="divFutSal";
         break;
       case "Baloncesto":
         divInstalacion.id="divBaloncesto";
@@ -79,8 +79,6 @@ async function pintarInstalaciones(instalaciones){
         case "Balonmano":
           divInstalacion.id="divBalonmano";
           break;
-      default:
-        divInstalaciones.id="";
       }
       
       

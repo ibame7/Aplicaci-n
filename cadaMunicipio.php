@@ -16,11 +16,14 @@ session_start();
         }
 
         #resultados {
-            width: 99vw;
-            height: 100vh;                        
+            width: 100vw;
+            height: 100vh;
             align-content: center;
             justify-items: center;
             animation: changeBackground 35s infinite;
+            overflow-y: auto;
+
+
         }
 
         @keyframes changeBackground {
@@ -45,39 +48,196 @@ session_start();
             }
         }
 
-        .divError{
+        .divError {
             width: 50vw;
-            height: 50vh; 
+            height: 50vh;
             position: relative;
             left: 24%;
             background-color: white;
             align-content: center;
-            text-align: center;        
+            text-align: center;
             color: black;
             font-weight: bold;
             font-size: 1.8em;
-            border-radius: 5px;            
+            border-radius: 5px;
         }
-        
+
         body {
             margin: 0;
             background-image: url("imagenes/basket.jpeg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            
         }
 
-        .divInstalacion:hover{
+        .divInstalacion {
+            width: 30%;
+            height: 30%;
+            flex: 0 0 calc(25% - 20px);
+            max-width: calc(25% - 20px);
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        #divInstalaciones {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .divInstalacion:hover {
             cursor: pointer;
-            width: 500px;
-      height: 300px;
-      background-size: cover;
+
         }
-        #divFutbol{
-            background-image: url(imagenes/futbol.png);
+
+        #divFutbol {
+            width: 100%;
+            height: 230px;
+            background-image: url(imagenes/pistas/futbol.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-        #divBaloncesto{
-            background-image: url(imagenes/baloncesto.jpg);
+
+        #divBaloncesto {
+            width: 100%;
+            height: 230px;
+            background-image: url(imagenes/pistas/baloncesto.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 75px;
+            font-size: 11rem;
+            background: linear-gradient(rgba(183, 118, 208, 0.8), rgba(4, 1, 66, 1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        #divBalonmano {
+            width: 100%;
+            height: 230px;
+            background-image: url(imagenes/pistas/balonmano.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #divTenis {
+            width: 100%;
+            height: 230px;
+            background-image: url(imagenes/pistas/tenis.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+       
+        #divPadel {
+            width: 100%;
+            height: 230px;
+            background-image: url(imagenes/pistas/padel.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #divFutSal {
+            width: 100%;
+            height: 230px;
+            background-image: url(imagenes/pistas/futsal.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .divInstalacion {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            /* Ajusta según sea necesario */
+            text-align: center;
+            overflow: hidden;
+            /* Oculta cualquier desbordamiento */
+        }
+
+        .divInstalacion h3 {
+            font-size: clamp(15px, 5vw, 27px);
+            font-weight: bold;
+            overflow-wrap: break-word;
+            overflow: hidden;
+            margin: 0;
+            color:black;
+        }
+
+        .divInstalacion p {
+            font-size: clamp(14px, 3vw, 24px);
+            /* Ajusta el tamaño de la fuente de manera responsiva */
+            margin: 10px 0 0 0;
+            max-width: 100%;
+            font-weight: bold;
+            color:rgba(0, 0, 20, 1);
+
+            
+        }
+        @media screen and (max-width: 1200px) {
+            .divInstalacion h3  {
+                font-size: clamp(10px, 5vw, 15px);
+
+            }
+            .divInstalacion p  {
+                font-size: clamp(10px, 5vw, 15px);
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .divInstalacion {
+                flex: 0 0 calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+
+            body {
+                background-image: none;
+            }
+
+            #resultados {
+                text-align: center;
+                padding-top: 120px;
+                background: linear-gradient(rgba(4, 1, 66, 1), rgba(183, 118, 208, 0.8));
+                /* Cambia el fondo a blanco cuando la pantalla sea más pequeña que 768px */
+            }
+
+            h1 {
+                margin-top: 25px;
+                font-size: 4rem;
+                background: white;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+
+            }
+
+            #divInstalaciones {
+                gap: 50px;
+            }
+
+            #resultados {
+                animation: none;
+                margin-top: ;
+                /* Elimina la animación cuando la pantalla sea más pequeña que 768px */
+            }
         }
     </style>
 </head>
