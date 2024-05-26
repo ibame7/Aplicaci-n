@@ -10,65 +10,80 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="estilos/stylePrincipal.css">
     <style>
-        * {
-            max-width: 100vw;
-            max-height: 100vh;
-        }
+       * {
+    max-width: 100vw;
+    max-height: 100vh;
+}
 
-        #resultados {
-            width: 100vw;
-            height: 81vh;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            padding: 10px;
-            align-content: center;
-            justify-items: center background-attachment: scroll;
-            animation: changeBackground 35s infinite;
-        }
+#resultados {
+    width: 100vw;
+    height: 100vh;   
+    animation: changeBackground 35s infinite;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 10px;
+    align-content: center;
+    justify-items: center;
+    background-attachment: scroll;  
+}
 
-        @keyframes changeBackground {
-            0% {
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/padel.jpeg");
-                background-size: cover;
-            }
+@media screen and (max-width: 600px) { /* Cambia el valor de 600px según necesites */
+    #resultados {
+        padding-top: 160px;
+        display: flex; /* Cambia a display flex para centrar los elementos */
+        flex-direction: column; /* Apila los elementos uno debajo del otro */
+        align-items: center; /* Centra los elementos horizontalmente */
+    }
 
-            33.33% {
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/futbol.jpg");
-                background-size: cover;
-            }
+    .divMunicipio {
+        margin-bottom: 15px; /* Agrega espacio entre los elementos */
+    }
+}
 
-            66.66% {
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/basket.jpeg");
-                background-size: cover;
-            }
+@keyframes changeBackground {
+    0% {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/padel.jpeg");
+        background-size: cover;
+    }
+    33.33% {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/futbol.jpg");
+        background-size: cover;
+    }
+    66.66% {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/basket.jpeg");
+        background-size: cover;
+    }
+    100% {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/tenis.jpg");
+        background-size: cover;
+    }
+}
 
-            100% {
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("imagenes/tenis.jpg");
-                background-size: cover;
-            }
-        }
+.divMunicipio {
+    background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
+    color: white;
+    text-align: center;
+    align-content: center;
+    border-radius: 5px;
+    height: 20vh;
+    width: 80%;
+}
 
-        .divMunicipio {
-            background: linear-gradient(rgba(132, 128, 204, 1), rgba(4, 1, 66, 1));
-            color: white;
-            text-align: center;
-            align-content: center;
-            border-radius: 5px;
-            height: 20vh;
-            width: 80%;
-        }
-        .divMunicipio:hover{
-            cursor: pointer;
-        }
-        
-        body {
-            margin: 0;
-            background-image: url("imagenes/basket.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+.divMunicipio:hover {
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+   
+    background-image: url("imagenes/basket.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
     </style>
 </head>
 
