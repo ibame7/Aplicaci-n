@@ -19,7 +19,8 @@ try {
         $propietario=$propietario['propietario'];
         $consultaPista = $bd->query("SELECT * FROM pista WHERE propietario='$propietario'");
         $pista = $consultaPista->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode(["Instalaciones"=>$pista]);
+        $datos=array("Instalaciones"=>$pista,"pueblo"=>$busqueda);
+        echo json_encode($datos);
 
     }
 

@@ -66,6 +66,19 @@ session_start();
             background-position: center;
             background-repeat: no-repeat;
         }
+
+        .divInstalacion:hover{
+            cursor: pointer;
+            width: 500px;
+      height: 300px;
+      background-size: cover;
+        }
+        #divFutbol{
+            background-image: url(imagenes/futbol.png);
+        }
+        #divBaloncesto{
+            background-image: url(imagenes/baloncesto.jpg);
+        }
     </style>
 </head>
 
@@ -105,7 +118,8 @@ session_start();
             </div>
         </div>
     </nav>
-    <div id="resultados"></div>
+    <div id="resultados">
+    </div>
     <section class="contact-section bg-black">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
