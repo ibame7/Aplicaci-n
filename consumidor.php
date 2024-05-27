@@ -417,7 +417,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo']) || $_SESSION['tipo
                         <input type="password" id="confirmPassword" name="confirmPassword">
                     </div>
                     <div class="form-group">
-                        <p id="error" style="color:red"></p>
+                        <p id="error2" style="color:red"></p>
                     </div>
                     <div class="form-group">
                         <button id="cambioContrasenia" type="button">Cambiar Contraseña</button>

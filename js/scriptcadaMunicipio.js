@@ -143,6 +143,9 @@ async function reservar(instalacion) {
         divError.innerHTML="";
         alert(data.mensaje);
         window.location.href="index.php";
+      }else if (data.permiso) {
+        alert(data.permiso);
+        window.location.href="acceso.php";
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);

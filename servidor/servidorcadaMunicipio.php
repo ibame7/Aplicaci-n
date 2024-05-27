@@ -6,10 +6,7 @@ header("Cache-Control: no-cache, must-revalidate"); // Esta línea ayuda a que l
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Esta línea ayuda a que la respuesta no se incluya en caché
 session_start();
 
-if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo'])) {
-    header("Location:acceso.php");
-    exit;
-}
+
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 if (isset($_GET["municipio"])) {
@@ -37,7 +34,10 @@ if (isset($_GET["municipio"])) {
     isset($_POST['fecha_start'], $_POST['importe'], $_POST['pista'], $_POST['fecha_start']) &&
     !empty($_POST['fecha_start']) && !empty($_POST['importe']) && !empty($_POST['pista'])
 ) {
-
+    if (!isset($_SESSION['usuario']) || !isset($_SESSION['tipo'])) {
+        echo json_encode(['permiso' => 'Para poder reservar debe estar logeado']);
+        exit;
+    }
     $id = random_int(1, 9999);
     $fecha_start = $_POST['fecha_start'];
     $importe = $_POST['importe'];
