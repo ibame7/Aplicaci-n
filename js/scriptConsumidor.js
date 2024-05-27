@@ -217,7 +217,6 @@ function pintarReservas(data, str) {
 
       if (str === "reservas") {
         let fechaInicio = new Date(item.fecha_start);
-        let fechaFinal = new Date(item.fecha_finish);
         let fechaActual = new Date();
         let diferenciaMilisegundos =
           fechaActual.getTime() - fechaInicio.getTime();
@@ -237,10 +236,6 @@ function pintarReservas(data, str) {
         pHora.innerHTML = "Hora Inicio: " + fechaInicio.getHours() + ":00";
         divElement.appendChild(pHora);
 
-        let pHoraFinal = document.createElement("p");
-        pHoraFinal.innerHTML = "Hora Final: " + fechaFinal.getHours() + ":00";
-        divElement.appendChild(pHoraFinal);
-
         let pImporte = document.createElement("p");
         pImporte.innerHTML = "Precio: " + item.importe + "€";
         divElement.appendChild(pImporte);
@@ -251,15 +246,14 @@ function pintarReservas(data, str) {
         if (fechaInicio < fechaActual) {
           btnEliminar.style = "disabled";
         } else {
-          divElement.appendChild(btnEliminar);          
-            btnEliminar.addEventListener("click", () =>{
-              if (Math.abs(diferenciaHoras) < 1) {
-                alert("Hay que anular con una hora de antelación como mínimo");
-              } else {
-              eliminarReserva(item.id_reserva)
+          divElement.appendChild(btnEliminar);
+          btnEliminar.addEventListener("click", () => {
+            if (Math.abs(diferenciaHoras) < 1) {
+              alert("Hay que anular con una hora de antelación como mínimo");
+            } else {
+              eliminarReserva(item.id_reserva);
             }
-        });
-          
+          });
         }
 
         divReservas.appendChild(divElement);
@@ -284,19 +278,91 @@ function pintarReservas(data, str) {
 
         divPista.className = "reserva";
 
-        let puntuacion = document.createElement("p");
-        puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
-        divPista.appendChild(puntuacion);
+        if (reserva.comentario == null || reserva.puntuacion == null) {
+          let btnResenia = document.createElement("button");
+          btnResenia.innerHTML = "Comentar";
+          btnResenia.classList.add("btnResenia");
+          divPista.appendChild(btnResenia);
+          btnResenia.addEventListener("click", () => {
+            aniadirResenia(reserva.id_reserva);
+          });
+        } else {
+          let puntuacion = document.createElement("p");
+          puntuacion.innerHTML = "Puntuación: " + reserva.puntuacion;
+          divPista.appendChild(puntuacion);
 
-        let comentario = document.createElement("p");
-        comentario.innerHTML = "Comentario: " + reserva.comentario;
-        divPista.appendChild(comentario);
+          let comentario = document.createElement("p");
+          comentario.innerHTML = "Comentario: " + reserva.comentario;
+          divPista.appendChild(comentario);
+        }
+
         divResenia.appendChild(divPista);
       });
     }
   }
 }
+async function aniadirResenia(id_reserva) {
+  let valorNumerico;
+  let comentario
+  do {
+    valorNumerico = prompt("Ingresa una puntuación entre 1 y 5:");
+    // Verificar si el usuario ha cancelado el prompt
+    if (valorNumerico === null) {
+      // Salir del bucle si el usuario ha cancelado
+      break;
+    }
+  } while (isNaN(valorNumerico) || !valorNumerico||valorNumerico>5||valorNumerico<0);
 
+  // Convertir el valor ingresado a un número si no es null
+  if (valorNumerico !== null) {
+    valorNumerico = parseFloat(valorNumerico);
+    do {
+      comentario = prompt("Introduce un comentario:");
+      if (comentario === null) {
+        break;
+      }
+    } while (!comentario);
+
+    if (comentario !== null) {
+      let url = new URL(
+        "http://localhost:3000/xampp/htdocs/Aplicacion/servidor/servidorReservas.php"
+      );
+     
+        let datos = {
+          id_reserva: id_reserva,
+          puntuacion: valorNumerico,
+          comentario: comentario
+        };
+    
+        let options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datos),
+        };
+  
+        // Realizar la solicitud Fetch
+        try {
+          let response = await fetch(url, options);
+          let data = await response.json();    
+          console.log(data);
+          if (data.ok) {
+            alert(data.ok);
+            window.location.reload();
+          }else if(data.error){
+            alert(data.error);
+          }
+        } catch (error) {
+          console.error("Error en la solicitud:", error);
+        }
+      
+
+      
+    }
+  }
+
+}
 async function eliminarReserva(idReserva) {
   await fetch(`servidor/servidorReservas.php?borrar=${idReserva}`)
     .then((data) => {

@@ -1,6 +1,8 @@
 <?php
 session_start();
 ?>
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
@@ -22,8 +24,6 @@ session_start();
             justify-items: center;
             animation: changeBackground 35s infinite;
             overflow-y: auto;
-
-
         }
 
         @keyframes changeBackground {
@@ -68,7 +68,6 @@ session_start();
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
         }
 
         .divInstalacion {
@@ -90,7 +89,6 @@ session_start();
 
         .divInstalacion:hover {
             cursor: pointer;
-
         }
 
         #divFutbol {
@@ -111,7 +109,7 @@ session_start();
             background-repeat: no-repeat;
         }
 
-        h1 {
+        #resultados h1 {
             text-align: center;
             font-weight: bolder;
             margin-bottom: 75px;
@@ -140,7 +138,7 @@ session_start();
             background-position: center;
             background-repeat: no-repeat;
         }
-       
+
         #divPadel {
             width: 100%;
             height: 230px;
@@ -167,10 +165,8 @@ session_start();
             width: 100%;
             height: 100%;
             padding: 20px;
-            /* Ajusta según sea necesario */
             text-align: center;
             overflow: hidden;
-            /* Oculta cualquier desbordamiento */
         }
 
         .divInstalacion h3 {
@@ -179,28 +175,27 @@ session_start();
             overflow-wrap: break-word;
             overflow: hidden;
             margin: 0;
-            color:black;
+            color: black;
         }
 
         .divInstalacion p {
             font-size: clamp(14px, 3vw, 24px);
-            /* Ajusta el tamaño de la fuente de manera responsiva */
             margin: 10px 0 0 0;
             max-width: 100%;
             font-weight: bold;
-            color:rgba(0, 0, 20, 1);
-
-            
+            color: rgba(0, 0, 20, 1);
         }
+
         @media screen and (max-width: 1200px) {
-            .divInstalacion h3  {
+            .divInstalacion h3 {
                 font-size: clamp(10px, 5vw, 15px);
-
             }
-            .divInstalacion p  {
+
+            .divInstalacion p {
                 font-size: clamp(10px, 5vw, 15px);
             }
         }
+
         @media screen and (max-width: 768px) {
             .divInstalacion {
                 flex: 0 0 calc(50% - 20px);
@@ -215,10 +210,9 @@ session_start();
                 text-align: center;
                 padding-top: 120px;
                 background: linear-gradient(rgba(4, 1, 66, 1), rgba(183, 118, 208, 0.8));
-                /* Cambia el fondo a blanco cuando la pantalla sea más pequeña que 768px */
             }
 
-            h1 {
+            #resultados h1 {
                 margin-top: 25px;
                 font-size: 4rem;
                 background: white;
@@ -226,7 +220,6 @@ session_start();
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
                 text-fill-color: transparent;
-
             }
 
             #divInstalaciones {
@@ -235,9 +228,140 @@ session_start();
 
             #resultados {
                 animation: none;
-                margin-top: ;
-                /* Elimina la animación cuando la pantalla sea más pequeña que 768px */
             }
+        }
+
+        /* Estilos específicos del modal */
+        .modal-dialog {
+            max-width: 90%;
+        }
+
+        .modal-contents {
+            padding: 20px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+        }
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calendar label {
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .calendar input,
+        .calendar select {
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .open-modal-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .open-modal-btn:hover {
+            background: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-contents {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .date-picker,
+        .time-picker {
+            margin-bottom: 20px;
+        }
+
+        .date-picker input,
+        .time-picker select {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            .modal-contents {
+                padding: 15px;
+            }
+
+            .date-picker input,
+            .time-picker select {
+                width: calc(100% - 30px);
+                margin: 10px 15px;
+            }
+
+            .submit-btn {
+                width: calc(100% - 30px);
+                margin: 10px 15px;
+            }
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.4;
+            /* O el valor que desees para que parezca "deshabilitado" */
         }
     </style>
 </head>
@@ -280,68 +404,49 @@ session_start();
     </nav>
     <div id="resultados">
     </div>
-    <section class="contact-section bg-black">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <div class="card py-4 h-100">
-                        <div class="card-body text-center" id="faq"
-                            style="display: flex; flex-direction: column; justify-content: center;">
-                            <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                            <h4 class="text-uppercase m-0">Preguntas Frecuentes</h4>
-                        </div>
-                    </div>
+    <!-- --------------------------- -->
+    <div id="reservationModal" class="modal">
+        <div class="modal-contents">
+            <span id="closeModalBtn" class="close-btn">&times;</span>
+            <h1>Reserva tu Pista</h1>
+            <form id="reservationForm">
+                <div class="date-picker">
+                    <label for="date">Selecciona la Fecha:</label>
+                    <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>"
+                        max="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" required>
                 </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <div class="card py-4 h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-envelope text-primary mb-2"></i>
-                            <h4 class="text-uppercase m-0">Email</h4>
-                            <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">
-                                <a
-                                    href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">reservayjuega@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <div class="card py-4 h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                            <h4 class="text-uppercase m-0">Teléfono</h4>
-                            <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">
-                                <p>Whatsapp: +34 644 89 23 84</p>
-                            </div>
+                <div class="time-picker">
+                    <label for="time">Selecciona la Hora:</label>
+                    <select id="time" name="time" required>
+                        <option value="">Selecciona la Hora</option>
+                        <option value="10:00">10:00 a 11:00</option>
+                        <option value="11:00">11:00 a 12:00</option>
+                        <option value="12:00">12:00 a 13:00</option>
+                        <option value="13:00">13:00 a 14:00</option>
 
-                            <div class="small text-black-50">
-                                <p>Teléfono: +34 955 654 432</p>
-                            </div>
-                        </div>
-                    </div>
+                        <option value="16:00">16:00 a 17:00</option>
+                        <option value="17:00">17:00 a 18:00</option>
+                        <option value="18:00">18:00 a 19:00</option>
+                        <option value="19:00">19:00 a 20:00</option>
+                        <option value="20:00">20:00 a 21:00</option>
+                        <option value="21:00">21:00 a 22:00</option>
+                    </select>
                 </div>
-            </div>
-            <div class="social d-flex justify-content-center">
-                <a class="mx-2" href="https://twitter.com/?lang=es">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="mx-2"
-                    href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F%3Flocale%3Des_ES">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="mx-2" href="https://www.instagram.com/">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
+                <div id="error" style="color:red"></div>
+                <button type="submit" class="submit-btn">Reservar</button>
+            </form>
         </div>
-    </section>
 
-    <footer class="footer bg-black small text-center text-white-50">
-        <div class="container px-4 px-lg-5">Copyright &copy; Reserva Y Juega 2024</div>
-    </footer>
+        <!-- --------------------------- -->
+
+
+
+
+        <!-- Scripts -->
+        <script src="js/scriptPrincipal.js"></script>
+        <script src="js/scriptcadaMunicipio.js"></script>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="js/scriptPrincipal.js"></script>
-<script src="js/scriptcadaMunicipio.js"></script>
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
