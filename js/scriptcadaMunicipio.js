@@ -151,9 +151,7 @@ async function reservar(instalacion) {
       console.error("Error en la solicitud:", error);
     }
   } else {
-    console.log(
-      "La reserva no es válida. Por favor, selecciona una fecha y hora adecuadas."
-    );
+    divError.innerHTML="La reserva no es válida. Por favor, selecciona una fecha y hora adecuadas.";  
   }
 }
 
