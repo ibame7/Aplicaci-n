@@ -43,6 +43,6 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
     </div>
 </body>
 <script src="js/scriptLogin.js"></script>
-</html>';
+</html>
 <?php
 }?>
