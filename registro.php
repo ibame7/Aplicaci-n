@@ -51,11 +51,13 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
           </div>
         </div>
         <a class="error"></a>
-        <div class="button">
-          <input type="submit" id="botonRegistro" value="Register">
+        <div class="button" style="text-align:center;">
+          <input type="submit" id="botonRegistro" value="Registrarse"/>
+          <br><br>
+          <a class="login-link" id="volver" href="index.php" >Volver</a>
         </div>
       </form>
-    </div>
+      </div>
   </div>
 </body>
 <script src="js/scriptLogin.js"></script>
